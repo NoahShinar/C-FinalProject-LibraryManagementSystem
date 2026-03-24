@@ -16,7 +16,7 @@ https://en.wikipedia.org/wiki/Library_of_Congress_Classification
 
 The Library system needs to:
 • Manage lending and returns of books and magazines
-• Review and display Members account o List borrowed books
+• Review and display Members account and List borrowed books
 • List borrowed magazines
 • Request an extension to a borrowed books
 • Adding and removing Members to the library
