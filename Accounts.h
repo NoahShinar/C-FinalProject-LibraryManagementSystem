@@ -6,6 +6,12 @@
 #define FINALPROJECT_ACCOUNTS_H
 
 #include <string>
+#include <vector>
+#include <fstream>
+#include <algorithm>
+#include <fstream>
+#include <iomanip>
+#include <utility>
 
 using namespace std;
 

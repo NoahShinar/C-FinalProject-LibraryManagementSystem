@@ -5,6 +5,8 @@
 #ifndef FINALPROJECT_LIBRARY_H
 #define FINALPROJECT_LIBRARY_H
 
+#include "Book.h"
+#include "Magazine.h"
 #include <string>
 
 using namespace std;
