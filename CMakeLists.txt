@@ -9,4 +9,6 @@ add_executable(FinalProject main.cpp
         Magazine.cpp
         Magazine.h
         Library.cpp
-        Library.h)
+        Library.h
+        Accounts.cpp
+        Accounts.h)
