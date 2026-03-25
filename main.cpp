@@ -33,6 +33,9 @@ The Library system needs to:
 
 using namespace std;
 
+const string ACCOUNTS_FILE = "/home/noahs/CLionProjects/FinalProject/RegisteredAccounts.txt";
+const string LIBRARY_FILE = "/home/noahs/CLionProjects/FinalProject/Library.txt";
+
 int main() {
 
     int choice;
