@@ -41,12 +41,12 @@ int main() {
     int choice;
 
     while (choice != 7) {
-        cout << "1. add member" << endl;
+        cout << "1. add new account" << endl;
         cout << "2. add book or magazine" << endl;
         cout << "3. borrow book or magazine" << endl;
         cout << "4. return book or magazine" << endl;
         cout << "5. view account" << endl;
-        cout << "6. request extention" << endl;
+        cout << "6. request extension" << endl;
         cout << "7. exit program" << endl;
 
         cout << "choice: ";
@@ -104,7 +104,7 @@ int main() {
                 break;
 
             case 6:
-                // request extention
+                // request extension
                 break;
 
             case 7:
