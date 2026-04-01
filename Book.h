@@ -10,7 +10,7 @@
 using namespace std;
 
 class Book {
-    public:
+    private:
         string title;
         string author;
         string classification; // organizes in alphebetical order and catagories
@@ -21,6 +21,7 @@ class Book {
         int dueMonth;
         int dueYear;
 
+    public:
         void displayBook(Book b);
         void borrowBook(Book &b);
         void returnBook(Book &b, int currentDay, int currentMonth, int currentYear);
