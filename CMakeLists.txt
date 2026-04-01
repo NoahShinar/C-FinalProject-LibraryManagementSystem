@@ -11,4 +11,6 @@ add_executable(FinalProject main.cpp
         Library.cpp
         Library.h
         Accounts.cpp
-        Accounts.h)
+        Accounts.h
+        FileHandler.cpp
+        FileHandler.h)

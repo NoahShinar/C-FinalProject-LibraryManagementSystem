@@ -14,7 +14,7 @@ void displayBook (Book b)
   cout << "Author: " << b.author << endl;
   cout << "Classification: " << b.classification << endl;
   cout << "Year: " << b.yearPublished << endl;
-  cout << "Borrowed Status: " << (b.isBorrowed? "Borrowed" : "Still available") << endl;
+  cout << "Borrowed Status: " << (b.isBorrowed ? "Borrowed" : "Still available") << endl;
 }
 
 //book borrowing section
