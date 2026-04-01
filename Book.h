@@ -20,6 +20,12 @@ class Book {
         int dueDay;
         int dueMonth;
         int dueYear;
+
+        void displayBook(Book b);
+        void borrowBook(Book &b);
+        void returnBook(Book &b, int currentDay, int currentMonth, int currentYear);
+        void setDueDate(Book &b, int day, int month, int year, string accountType);
+        void extendDueDate(Book &b);
 };
 
 
