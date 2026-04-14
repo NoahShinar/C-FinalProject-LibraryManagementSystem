@@ -3,12 +3,16 @@
 //
 
 #include "FileHandler.h"
+#include "Accounts.h"
+#include <iostream>
 #include <fstream>
 
 using namespace std;
 
 string FileHandler::RegisterAccount() {
+
     ifstream file(ACCOUNTS_FILE);
+    string name;
 
     if (!file) {
         cerr << "unable to open file: " << ACCOUNTS_FILE << endl;

@@ -7,29 +7,25 @@
 
 using namespace std;
 
-//
-string Accounts::borrowedBooks()
-{
+string Accounts::borrowedBooks() {
     return "No books stored";
 }
 
-string Accounts::borrowedMagazines()
-{
+string Accounts::borrowedMagazines() {
     return "No magazines stored";
 }
 
-int Accounts::maxBorrowTime()
-{
-    if (type == "Student")
-    {
+int Accounts::maxBorrowTime(int inputType) {
+
+    type = static_cast<TYPE>(inputType);
+
+    if (type == STUDENT) {
         return 30; //days loaned
     }
-    else if (type == "Faculty" || type == "Staff")
-    {
+    else if (type == FACILITY || type == STAFF) {
         return 60; //days loaned
     }
-    else
-    {
+    else {
         return 30; //default
     }
 }

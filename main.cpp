@@ -51,6 +51,16 @@ int main() {
         switch (choice) {
             case 1:
 
+                // Register account
+
+                int typeChoice;
+                string name;
+
+                cout << "1. Student" << endl;
+                cout << "2. Facility" << endl;
+                cout << "3. Staff" << endl;
+                cin >> typeChoice;
+
                 break;
 
             case 2:

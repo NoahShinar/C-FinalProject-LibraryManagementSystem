@@ -18,12 +18,13 @@ using namespace std;
 class Accounts {
     public:
         string accountName;
-        string type; // student, facility, staff
+        enum TYPE {STUDENT, FACILITY, STAFF};
+        TYPE type;
 
     private:
         string borrowedBooks();
         string borrowedMagazines();
-        int maxBorrowTime();
+        int maxBorrowTime(int inputType);
 };
 
 
