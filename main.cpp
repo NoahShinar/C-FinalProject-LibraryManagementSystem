@@ -27,14 +27,10 @@ The Library system needs to:
 #include <vector>
 #include <fstream>
 #include <algorithm>
-#include <fstream>
 #include <iomanip>
 #include <utility>
 
 using namespace std;
-
-const string ACCOUNTS_FILE = "/home/noahs/CLionProjects/FinalProject/RegisteredAccounts.txt";
-const string LIBRARY_FILE = "/home/noahs/CLionProjects/FinalProject/Library.txt";
 
 int main() {
 
@@ -54,18 +50,6 @@ int main() {
 
         switch (choice) {
             case 1:
-                ifstream file(ACCOUNTS_FILE);
-
-                if (!file) {
-                    cerr << "unable to open file: " << ACCOUNTS_FILE << endl;
-                    exit(EXIT_FAILURE);
-                }
-
-                while (!file.eof()) {
-                    getline(file, name, ',');
-                }
-
-                file.close();
 
                 break;
 
