@@ -54,7 +54,19 @@ int main() {
 
         switch (choice) {
             case 1:
-                // add member
+                ifstream file(ACCOUNTS_FILE);
+
+                if (!file) {
+                    cerr << "unable to open file: " << ACCOUNTS_FILE << endl;
+                    exit(EXIT_FAILURE);
+                }
+
+                while (!file.eof()) {
+
+                }
+
+                file.close();
+
                 break;
 
             case 2:
