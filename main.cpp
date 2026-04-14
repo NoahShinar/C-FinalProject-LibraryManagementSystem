@@ -62,7 +62,7 @@ int main() {
                 }
 
                 while (!file.eof()) {
-
+                    getline(file, name, ',');
                 }
 
                 file.close();

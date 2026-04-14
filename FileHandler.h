@@ -11,7 +11,8 @@ using namespace std;
 
 class FileHandler {
     private:
-
+        string RegisterAccount();
+        string libraryFile();
 };
 
 
