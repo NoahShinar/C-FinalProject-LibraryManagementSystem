@@ -45,13 +45,13 @@ int main() {
     string name;
 
     while (choice != 7) {
-        cout << "1. add new account" << endl;
+        cout << "1. add new account" << endl; // Done but may need bug fixes
         cout << "2. add book or magazine" << endl;
         cout << "3. borrow book or magazine" << endl;
         cout << "4. return book or magazine" << endl;
         cout << "5. view account" << endl;
         cout << "6. request extension" << endl;
-        cout << "7. exit program" << endl;
+        cout << "7. exit program" << endl; // Done
 
         cout << "choice: ";
         cin >> choice;
@@ -61,12 +61,18 @@ int main() {
                 cout << "Enter account name (no spaces): ";
                 cin >> name;
 
-                cout << "1. Student" << endl;
-                cout << "2. Facility" << endl;
-                cout << "3. Staff" << endl;
-                cin >> typeChoice;
+                while (typeChoice != 1 && typeChoice != 2 && typeChoice != 3) {
+                    cout << "1. Student" << endl;
+                    cout << "2. Facility" << endl;
+                    cout << "3. Staff" << endl;
+                    cin >> typeChoice;
 
-                createAccount.RegisterAccount(name, static_cast<AccountTypeEnum>(typeChoice-1));
+                    if (typeChoice < 1 || typeChoice > 3) {
+                        cout << "Invalid account type selected." << endl;
+                    }
+                }
+
+                createAccount.RegisterAccount(name, static_cast<AccountTypeEnum>(typeChoice - 1));
 
                 break;
 
