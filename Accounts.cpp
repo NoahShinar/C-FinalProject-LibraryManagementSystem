@@ -17,12 +17,12 @@ string Accounts::borrowedMagazines() {
 
 int Accounts::maxBorrowTime(int inputType) {
 
-    type = static_cast<TYPE>(inputType);
+    type = static_cast<AccountTypeEnum>(inputType);
 
-    if (type == STUDENT) {
+    if (type == AccountTypeEnum::STUDENT) {
         return 30; //days loaned
     }
-    else if (type == FACILITY || type == STAFF) {
+    else if (type == AccountTypeEnum::FACILITY || type == AccountTypeEnum::STAFF) {
         return 60; //days loaned
     }
     else {

@@ -13,4 +13,6 @@ add_executable(FinalProject main.cpp
         Accounts.cpp
         Accounts.h
         FileHandler.cpp
-        FileHandler.h)
+        FileHandler.h
+        AccountTypeEnum.cpp
+        AccountTypeEnum.h)

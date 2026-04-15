@@ -1,0 +1,12 @@
+//
+// Created by noahs on 4/15/26.
+//
+
+#ifndef FINALPROJECT_ACCOUNTTYPEENUM_H
+#define FINALPROJECT_ACCOUNTTYPEENUM_H
+
+
+enum class AccountTypeEnum {STUDENT, FACILITY, STAFF};
+
+
+#endif //FINALPROJECT_ACCOUNTTYPEENUM_H

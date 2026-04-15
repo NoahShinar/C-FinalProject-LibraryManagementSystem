@@ -30,11 +30,19 @@ The Library system needs to:
 #include <iomanip>
 #include <utility>
 
+#include "FileHandler.h"
+
 using namespace std;
 
 int main() {
 
-    int choice;
+    FileHandler createAccount;
+    int choice = 0;
+    int itemChoiceAdd = 0;
+    int itemChoiceBorrow = 0;
+    int itemChoiceReturn = 0;
+    int typeChoice = 0;
+    string name;
 
     while (choice != 7) {
         cout << "1. add new account" << endl;
@@ -50,26 +58,26 @@ int main() {
 
         switch (choice) {
             case 1:
-
-                // Register account
-
-                int typeChoice;
-                string name;
+                cout << "Enter account name (no spaces): ";
+                cin >> name;
 
                 cout << "1. Student" << endl;
                 cout << "2. Facility" << endl;
                 cout << "3. Staff" << endl;
                 cin >> typeChoice;
 
+                createAccount.RegisterAccount(name, static_cast<AccountTypeEnum>(typeChoice-1));
+
                 break;
 
             case 2:
+
                 cout << "1. book" << endl << "2. magazine" << endl;
-                cin >> choice;
-                if (choice == 1) {
+                cin >> itemChoiceAdd;
+                if (itemChoiceAdd == 1) {
 
                 }
-                if (choice == 2) {
+                else if (itemChoiceAdd == 2) {
 
                 }
                 else {
@@ -79,11 +87,11 @@ int main() {
 
             case 3:
                 cout << "1. book" << endl << "2. magazine" << endl;
-                cin >> choice;
-                if (choice == 1) {
+                cin >> itemChoiceBorrow;
+                if (itemChoiceBorrow == 1) {
 
                 }
-                if (choice == 2) {
+                else if (itemChoiceBorrow == 2) {
 
                 }
                 else {
@@ -93,11 +101,11 @@ int main() {
 
             case 4:
                 cout << "1. book" << endl << "2. magazine" << endl;
-                cin >> choice;
-                if (choice == 1) {
+                cin >> itemChoiceReturn;
+                if (itemChoiceReturn == 1) {
 
                 }
-                if (choice == 2) {
+                else if (itemChoiceReturn == 2) {
 
                 }
                 else {

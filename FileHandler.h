@@ -1,11 +1,12 @@
 //
-// Coded by noah s on 4/1/26.
+// Coded by noahs on 4/1/26.
 //
 
 #ifndef FINALPROJECT_FILEHANDLER_H
 #define FINALPROJECT_FILEHANDLER_H
 
-#import <string>
+#include <string>
+#include "Accounts.h"
 
 using namespace std;
 
@@ -14,7 +15,9 @@ class FileHandler {
         const string ACCOUNTS_FILE = "/home/noahs/CLionProjects/FinalProject/RegisteredAccounts.txt";
         const string LIBRARY_FILE = "/home/noahs/CLionProjects/FinalProject/Library.txt";
 
-        string RegisterAccount();
+    public:
+        string enumToString(AccountTypeEnum type);
+        string RegisterAccount(string name, AccountTypeEnum type);
         string libraryFile();
 };
 

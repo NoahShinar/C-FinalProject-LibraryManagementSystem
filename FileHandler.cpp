@@ -9,21 +9,43 @@
 
 using namespace std;
 
-string FileHandler::RegisterAccount() {
+string FileHandler::enumToString(AccountTypeEnum type) {
+    switch (type) {
+        case AccountTypeEnum::STUDENT:
+            return "STUDENT";
+        case AccountTypeEnum::FACILITY:
+            return "FACILITY";
+        case AccountTypeEnum::STAFF:
+            return "STAFF";
+        default:
+            return "UNKNOWN";
+    }
+}
 
-    ifstream file(ACCOUNTS_FILE);
-    string name;
+string FileHandler::RegisterAccount(string name, AccountTypeEnum type) {
+
+    fstream file(ACCOUNTS_FILE, ios::app);
 
     if (!file) {
-        cerr << "unable to open file: " << ACCOUNTS_FILE << endl;
-        exit(EXIT_FAILURE);
+        cerr << "Unable to open file: " << ACCOUNTS_FILE << endl;
+        return "Error: Could not open file";
     }
 
-    while (!file.eof()) {
-        getline(file, name, ',');
-    }
+    ifstream checkFile(ACCOUNTS_FILE);
+    string line;
 
+    while (getline(checkFile, line)) {
+        if (line.find(name) != string::npos) {
+            checkFile.close();
+            return "Error: Account already exists";
+        }
+    }
+    checkFile.close();
+
+    file << name << " " << enumToString(type) << endl;
     file.close();
+
+    return "Account registered successfully";
 }
 string FileHandler::libraryFile() {
 

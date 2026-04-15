@@ -13,15 +13,16 @@
 #include <iomanip>
 #include <utility>
 
+#include "AccountTypeEnum.h"
+
 using namespace std;
 
 class Accounts {
-    public:
-        string accountName;
-        enum TYPE {STUDENT, FACILITY, STAFF};
-        TYPE type;
-
     private:
+        string accountName;
+        AccountTypeEnum type;
+
+    public:
         string borrowedBooks();
         string borrowedMagazines();
         int maxBorrowTime(int inputType);
