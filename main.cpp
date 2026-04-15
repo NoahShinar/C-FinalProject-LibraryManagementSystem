@@ -29,6 +29,7 @@ The Library system needs to:
 #include <algorithm>
 #include <iomanip>
 #include <utility>
+#include <cctype>
 
 #include "FileHandler.h"
 
@@ -42,10 +43,10 @@ int main() {
     int itemChoiceBorrow = 0;
     int itemChoiceReturn = 0;
     int typeChoice = 0;
-    string name;
+    string name = "";
 
     while (choice != 7) {
-        cout << "1. add new account" << endl; // Done but may need bug fixes
+        cout << "1. add new account" << endl; // Done but need to fix whitespace bug when entering account name
         cout << "2. add book or magazine" << endl;
         cout << "3. borrow book or magazine" << endl;
         cout << "4. return book or magazine" << endl;
@@ -58,6 +59,7 @@ int main() {
 
         switch (choice) {
             case 1:
+
                 cout << "Enter account name (no spaces): ";
                 cin >> name;
 
@@ -68,7 +70,7 @@ int main() {
                     cin >> typeChoice;
 
                     if (typeChoice < 1 || typeChoice > 3) {
-                        cout << "Invalid account type selected." << endl;
+                        cout << "Invalid account type selected." << endl; // Loop back to type menu until 1, 2, or 3 is inputted
                     }
                 }
 
