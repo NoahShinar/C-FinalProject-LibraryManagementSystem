@@ -61,7 +61,7 @@ int main() {
             case 1:
 
                 cout << "Enter account name (no spaces): ";
-                cin >> name;
+                cin >> name; // cin causing looping error
 
                 while (typeChoice != 1 && typeChoice != 2 && typeChoice != 3) {
                     cout << "1. Student" << endl;
