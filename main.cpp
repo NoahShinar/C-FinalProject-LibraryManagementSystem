@@ -30,6 +30,7 @@ The Library system needs to:
 #include <iomanip>
 #include <utility>
 #include <cctype>
+#include <limits>
 
 #include "FileHandler.h"
 
@@ -38,6 +39,7 @@ using namespace std;
 int main() {
 
     FileHandler createAccount;
+    bool validName = false;
     int choice = 0;
     int itemChoiceAdd = 0;
     int itemChoiceBorrow = 0;
@@ -60,8 +62,17 @@ int main() {
         switch (choice) {
             case 1:
 
-                cout << "Enter account name (no spaces): ";
-                cin >> name; // cin causing looping error
+                while (!validName) {
+                    cout << "Enter account name (no spaces): ";
+                    getline(cin, name);
+
+                    if (name.find(' ') != string::npos || name.empty()) {
+                        cout << "Invalid name. Please do not use spaces." << endl;
+                    }
+                    else {
+                        validName = true;
+                    }
+                }
 
                 while (typeChoice != 1 && typeChoice != 2 && typeChoice != 3) {
                     cout << "1. Student" << endl;
@@ -75,6 +86,16 @@ int main() {
                 }
 
                 createAccount.RegisterAccount(name, static_cast<AccountTypeEnum>(typeChoice - 1));
+
+                if (typeChoice == 1) {
+                    cout << "Account Name: " << name << " Account Type: Student" << endl;
+                }
+                else if (typeChoice == 2) {
+                    cout << "Account Name: " << name << " Account Type: Facility" << endl;
+                }
+                else if (typeChoice == 3) {
+                    cout << "Account Name: " << name << " Account Type: Staff" << endl;
+                }
 
                 break;
 
