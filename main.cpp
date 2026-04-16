@@ -48,7 +48,7 @@ int main() {
     string name = "";
 
     while (choice != 7) {
-        cout << "1. add new account" << endl; // Done but need to fix loop bug
+        cout << "1. add new account" << endl; // Done but need to fix loop bug line 74
         cout << "2. add book or magazine" << endl;
         cout << "3. borrow book or magazine" << endl;
         cout << "4. return book or magazine" << endl;
@@ -82,7 +82,7 @@ int main() {
                     cin >> typeChoice;
 
                     if (typeChoice < 1 || typeChoice > 3) {
-                        cout << "Invalid account type selected." << endl; // Loop back to type menu until 1, 2, or 3 is inputted
+                        cout << "Invalid account type selected." << endl; // Loops back to type menu until 1, 2, or 3 is inputted
                     }
                 }
 
