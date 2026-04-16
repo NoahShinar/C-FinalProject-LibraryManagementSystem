@@ -48,7 +48,7 @@ int main() {
     string name = "";
 
     while (choice != 7) {
-        cout << "1. add new account" << endl; // Done but need to fix whitespace bug when entering account name
+        cout << "1. add new account" << endl; // Done but need to fix loop bug
         cout << "2. add book or magazine" << endl;
         cout << "3. borrow book or magazine" << endl;
         cout << "4. return book or magazine" << endl;
@@ -63,6 +63,7 @@ int main() {
             case 1:
 
                 while (!validName) {
+
                     cout << "Enter account name (no spaces): ";
                     getline(cin, name);
 
@@ -70,7 +71,7 @@ int main() {
                         cout << "Invalid name. Please do not use spaces." << endl;
                     }
                     else {
-                        validName = true;
+                        validName = true; // stays true forever need to fix
                     }
                 }
 
@@ -88,13 +89,13 @@ int main() {
                 createAccount.RegisterAccount(name, static_cast<AccountTypeEnum>(typeChoice - 1));
 
                 if (typeChoice == 1) {
-                    cout << "Account Name: " << name << " Account Type: Student" << endl;
+                    cout << endl << "Account Name: " << name << " Account Type: Student" << endl << endl;
                 }
                 else if (typeChoice == 2) {
-                    cout << "Account Name: " << name << " Account Type: Facility" << endl;
+                    cout << endl << "Account Name: " << name << " Account Type: Facility" << endl << endl;
                 }
                 else if (typeChoice == 3) {
-                    cout << "Account Name: " << name << " Account Type: Staff" << endl;
+                    cout << endl << "Account Name: " << name << " Account Type: Staff" << endl << endl;
                 }
 
                 break;

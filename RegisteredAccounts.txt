@@ -7,3 +7,6 @@ rewrydth STUDENT
 sdfs STAFF
 sdfsf STUDENT
 erd STUDENT
+resgs STAFF
+rwaefs FACILITY
+sfa FACILITY
