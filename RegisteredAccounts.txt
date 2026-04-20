@@ -10,3 +10,5 @@ erd STUDENT
 resgs STAFF
 rwaefs FACILITY
 sfa FACILITY
+adafs FACILITY
+rwaf STUDENT

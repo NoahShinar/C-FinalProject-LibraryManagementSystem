@@ -23,18 +23,29 @@ The Library system needs to:
 • Handle fines of $1.75 per day on late books.
  */
 
+
+/**
+* main.cpp:
+ * Program to manage a library system
+ *
+ *  @authors Noah Shinar and Kami Iwanski
+ */
+
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include <algorithm>
 #include <iomanip>
-#include <utility>
-#include <cctype>
 #include <limits>
 
 #include "FileHandler.h"
 
 using namespace std;
+
+/**
+ * Function main begins with program execution
+ *
+ * @return The result of program execution
+ */
 
 int main() {
 
@@ -48,7 +59,7 @@ int main() {
     string name = "";
 
     while (choice != 7) {
-        cout << "1. add new account" << endl; // Done but need to fix loop bug line 74
+        cout << "1. add new account" << endl; // Done
         cout << "2. add book or magazine" << endl;
         cout << "3. borrow book or magazine" << endl;
         cout << "4. return book or magazine" << endl;
@@ -62,6 +73,11 @@ int main() {
         switch (choice) {
             case 1:
 
+                validName = false;
+                typeChoice = 0;
+
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
                 while (!validName) {
 
                     cout << "Enter account name (no spaces): ";
@@ -71,7 +87,7 @@ int main() {
                         cout << "Invalid name. Please do not use spaces." << endl;
                     }
                     else {
-                        validName = true; // stays true forever need to fix
+                        validName = true;
                     }
                 }
 

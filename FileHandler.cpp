@@ -49,4 +49,29 @@ string FileHandler::RegisterAccount(string name, AccountTypeEnum type) {
 }
 string FileHandler::libraryFile() {
 
+     ifstream file(LIBRARY_FILE);
+
+    if (!file) {
+        cerr << "Unable to open file: " << LIBRARY_FILE << endl;
+        return "Error: Could not open file";
+    }
+
+    string input;
+    int lineCount = 0;
+
+    while (getline(file, input)) {
+        lineCount++;
+
+        if (lineCount <= 50) {
+            cout << "Books: " << input << endl;
+        }
+        else if (lineCount <= 100) {
+            cout << "Magazines: " << input << endl;
+        }
+        else {
+            break;
+        }
+    }
+
+    file.close();
 }
