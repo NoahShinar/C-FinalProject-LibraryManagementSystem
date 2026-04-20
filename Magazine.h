@@ -1,5 +1,5 @@
 //
-// Coded by noah s on 3/24/26.
+// Coded by noah s + Kami I. on 3/24/26 and 4/20/26.
 //
 
 #ifndef FINALPROJECT_MAGAZINE_H
