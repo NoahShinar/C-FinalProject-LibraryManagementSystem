@@ -1,5 +1,6 @@
 NoahShinar STUDENT
-hellooo FACILITY
+KamiIwanski STUDENT
+hellooo FACULTY
 sfsga STUDENT
 sgdgafv STUDENT
 ag STUDENT
@@ -8,7 +9,7 @@ sdfs STAFF
 sdfsf STUDENT
 erd STUDENT
 resgs STAFF
-rwaefs FACILITY
-sfa FACILITY
-adafs FACILITY
+rwaefs FACULTY
+sfa FACULTY
+adafs FACULTY
 rwaf STUDENT
