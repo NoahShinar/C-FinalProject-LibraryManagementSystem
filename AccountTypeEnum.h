@@ -6,7 +6,7 @@
 #define FINALPROJECT_ACCOUNTTYPEENUM_H
 
 
-enum class AccountTypeEnum {STUDENT, FACILITY, STAFF};
+enum class AccountTypeEnum {STUDENT, FACULTY, STAFF};
 
 
 #endif //FINALPROJECT_ACCOUNTTYPEENUM_H

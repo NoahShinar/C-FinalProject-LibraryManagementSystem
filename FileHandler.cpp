@@ -14,7 +14,7 @@ string FileHandler::enumToString(AccountTypeEnum type) {
     switch (type) {
         case AccountTypeEnum::STUDENT:
             return "STUDENT";
-        case AccountTypeEnum::FACILITY:
+        case AccountTypeEnum::FACULTY:
             return "FACILITY";
         case AccountTypeEnum::STAFF:
             return "STAFF";

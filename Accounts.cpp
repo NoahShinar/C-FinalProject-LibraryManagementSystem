@@ -21,7 +21,7 @@ int Accounts::maxBorrowTime(int inputType) {
     if (type == AccountTypeEnum::STUDENT) {
         return 30; //days loaned
     }
-    else if (type == AccountTypeEnum::FACILITY || type == AccountTypeEnum::STAFF) {
+    else if (type == AccountTypeEnum::FACULTY || type == AccountTypeEnum::STAFF) {
         return 60; //days loaned
     }
     else {
