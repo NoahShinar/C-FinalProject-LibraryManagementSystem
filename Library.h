@@ -1,5 +1,5 @@
 //
-// Coded by noah s on 3/24/26.
+// Coded by Kami I. on 4/20/26.
 //
 
 #ifndef FINALPROJECT_LIBRARY_H
@@ -12,7 +12,7 @@
 using namespace std;
 
 class Library {
-    private:
+public:
         string listBooks();
         string listMagazines();
         string listMembers();
