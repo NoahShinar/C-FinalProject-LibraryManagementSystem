@@ -4,6 +4,7 @@
 
 #include "FileHandler.h"
 #include "Accounts.h"
+#include "Library.h"
 #include <iostream>
 #include <fstream>
 
@@ -62,10 +63,10 @@ string FileHandler::libraryFile() {
     while (getline(file, input)) {
         lineCount++;
 
-        if (lineCount <= 50) {
+        if (lineCount <= 50 && lineCount >= 0) {
             cout << "Books: " << input << endl;
         }
-        else if (lineCount <= 100) {
+        else if (lineCount >= 51 && lineCount <= 100) {
             cout << "Magazines: " << input << endl;
         }
         else {

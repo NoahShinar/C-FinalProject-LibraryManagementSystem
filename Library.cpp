@@ -3,3 +3,15 @@
 //
 
 #include "Library.h"
+
+using namespace std;
+
+string listBooks() {
+
+}
+string listMagazines() {
+
+}
+string listMembers() {
+
+}
