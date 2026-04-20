@@ -19,6 +19,8 @@ class Magazine {
         int dueDay;
         int dueMonth;
         int dueYear;
+
+        Magazine();
 };
 
 
