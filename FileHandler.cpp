@@ -98,54 +98,6 @@ string FileHandler::removeAccount(string name) {
         return "Account not found";
     }
 }
-string FileHandler::getBooks() {
-
-    ifstream file(LIBRARY_FILE);
-
-    if (!file) {
-        cerr << "Unable to open file: " << LIBRARY_FILE << endl;
-        return "Error: Could not open file";
-    }
-
-    string input;
-    int lineCount = 0;
-
-    while (getline(file, input)) {
-        lineCount++;
-
-        if (lineCount >= 0 && lineCount <= 50) {
-            cout << "Books: " << input << endl;
-        }
-        else {
-            break;
-        }
-    }
-
-    file.close();
-}
-string FileHandler::getMagazines() {
-
-    ifstream file(LIBRARY_FILE);
-
-    if (!file) {
-        return "Error: Could not open file";
-    }
-
-    string input;
-    int lineCount = 0;
-    string result = "Magazines:\n";
-
-    while (getline(file, input)) {
-        lineCount++;
-
-        if (lineCount >= 51 && lineCount <= 100) {
-            cout << "Magazines: " << input << endl;
-        }
-    }
-
-    file.close();
-    return result;
-}
 string addBook(string name, AccountTypeEnum type) {
 
 }
