@@ -1,5 +1,5 @@
 //
-// Created by noahs on 4/1/26.
+// Created by noahs on 4/1/26. Updated by Kami I. on 4/22/26.
 //
 
 #include "FileHandler.h"
@@ -20,7 +20,7 @@ string FileHandler::enumToString(AccountTypeEnum type) {
         case AccountTypeEnum::STAFF:
             return "STAFF";
         default:
-            return "UNKNOWN";
+            return "UNKNOWN"; //special case
     }
 }
 
@@ -54,13 +54,13 @@ string FileHandler::RegisterAccount(string name, AccountTypeEnum type) {
     fstream file(ACCOUNTS_FILE, ios::app);
     if (!file) {
         cerr << "Unable to open file: " << ACCOUNTS_FILE << endl;
-        return "Error: Could not open file";
+        return "Error: Could not open file"; //error code
     }
 
     file << name << " " << enumToString(type) << endl;
     file.close();
 
-    return "Account registered successfully";
+    return "Account registered successfully"; //easy to compute case
 }
 string FileHandler::removeAccount(string name) {
 
