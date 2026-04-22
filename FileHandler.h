@@ -22,8 +22,6 @@ class FileHandler {
         bool AccountExists(string name);
         string RegisterAccount(string name, AccountTypeEnum type);
         string removeAccount(string name);
-        string addBook(string name, AccountTypeEnum type);
-        string addMagazine(string name, AccountTypeEnum type);
 };
 
 

@@ -98,9 +98,3 @@ string FileHandler::removeAccount(string name) {
         return "Account not found";
     }
 }
-string addBook(string name, AccountTypeEnum type) {
-
-}
-string addMagazine(string name, AccountTypeEnum type) {
-
-}
