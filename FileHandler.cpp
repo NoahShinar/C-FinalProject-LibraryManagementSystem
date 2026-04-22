@@ -2,7 +2,13 @@
 // Created by noahs on 4/1/26. Updated by Kami I. on 4/22/26.
 //
 
-//will add a /* if need be for each class, wasn't sure if we needed to for every class or not */
+/**
+ * FileHandler.cpp:
+ * Class to handle Library.txt and RegisteredAccounts.txt
+ *
+ * @author Noah S
+ * @author Kami I
+*/
 
 #include "FileHandler.h"
 #include "Accounts.h"
@@ -13,6 +19,12 @@
 
 using namespace std;
 
+/**
+ * Function to convert enum type to string
+ *
+ * @param type enum types STUDENT, FACULTY, STAFF
+ * @return AccountTypeEnum type as a string
+ */
 string FileHandler::enumToString(AccountTypeEnum type) {
     switch (type) {
         case AccountTypeEnum::STUDENT:
@@ -26,6 +38,12 @@ string FileHandler::enumToString(AccountTypeEnum type) {
     }
 }
 
+/**
+ * Function to check if account exists when trying to create a new account
+ *
+ * @param name account name
+ * @return boolean account exists = true or false
+ */
 bool FileHandler::AccountExists(string name) {
 
     ifstream checkFile(ACCOUNTS_FILE);
@@ -47,6 +65,13 @@ bool FileHandler::AccountExists(string name) {
     return false;
 }
 
+/**
+ * Function to register an account into RegisteredAccounts.txt
+ *
+ * @param name account name
+ * @param type enum types STUDENT, FACULTY, STAFF
+ * @return Account registered successfully or Error: Account already exists
+ */
 string FileHandler::RegisterAccount(string name, AccountTypeEnum type) {
 
     if (AccountExists(name)) {
@@ -64,6 +89,13 @@ string FileHandler::RegisterAccount(string name, AccountTypeEnum type) {
 
     return "Account registered successfully"; //easy to compute case
 }
+
+/**
+ * Function to remove an account from RegisteredAccounts.txt
+ *
+ * @param name account name
+ * @return Account successfully removed or Account not found
+ */
 string FileHandler::removeAccount(string name) {
 
     ifstream file(ACCOUNTS_FILE);

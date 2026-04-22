@@ -2,6 +2,14 @@
 // Coded by noahs on 4/1/26.
 //
 
+/**
+ * FileHandler.h:
+ * Header file for FileHandler.cpp
+ *
+ * @author Noah S
+ * @author Kami I
+*/
+
 #ifndef FINALPROJECT_FILEHANDLER_H
 #define FINALPROJECT_FILEHANDLER_H
 

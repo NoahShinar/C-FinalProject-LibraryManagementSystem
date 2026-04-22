@@ -7,7 +7,6 @@
 
 using namespace std;
 
-//book info and such
 void Book::displayBook (Book b)
 {
   cout << "Title: " << b.title << endl;
@@ -17,7 +16,6 @@ void Book::displayBook (Book b)
   cout << "Borrowed Status: " << (b.isBorrowed ? "Borrowed" : "Still available") << endl;
 }
 
-//book borrowing section
 void Book::borrowBook (Book &b)
 {
     if (!b.isBorrowed)
@@ -31,7 +29,6 @@ void Book::borrowBook (Book &b)
     }
 }
 
-//book returns (NOT MAGAZINES!!!)
 void Book::returnBook (Book &b, int currentDay, int currentMonth, int currentYear)
 {
  b.isBorrowed = false;
@@ -49,7 +46,6 @@ void Book::returnBook (Book &b, int currentDay, int currentMonth, int currentYea
  }
 }
 
-//setting the due date for the books
 void Book::setDueDate (Book &b, int day, int month, int year, string accountType)
 {
  int borrowDays;
@@ -71,7 +67,6 @@ void Book::setDueDate (Book &b, int day, int month, int year, string accountType
     b.dueYear = year;
 }
 
-//extending the person's due date
 void Book::extendDueDate (Book &b)
 {
  b.dueDay += 10;
