@@ -7,12 +7,15 @@
 
 using namespace std;
 
-string AccountTypeToString(AccountTypeEnum type)
-{
-    if (type == AccountTypeEnum::STUDENT)
-        return "STUDENT";
-    else if (type == AccountTypeEnum::FACULTY)
-        return "FACULTY";
-    else if (type == AccountTypeEnum::STAFF)
-        return "STAFF";
+string enumToString(AccountTypeEnum type) {
+    switch (type) {
+        case AccountTypeEnum::STUDENT:
+            return "STUDENT";
+        case AccountTypeEnum::FACULTY:
+            return "FACILITY";
+        case AccountTypeEnum::STAFF:
+            return "STAFF";
+        default:
+            return "UNKNOWN";
+    }
 }

@@ -1,15 +1,2 @@
-NoahShinar STUDENT
-KamiIwanski STUDENT
-ThomasRossi FACULTY
-sfsga STUDENT
-sgdgafv STUDENT
-ag STUDENT
-rewrydth STUDENT
-sdfs STAFF
-sdfsf STUDENT
-erd STUDENT
-resgs STAFF
-rwaefs FACULTY
-sfa FACULTY
-adafs FACULTY
-rwaf STUDENT
+a STUDENT
+b STUDENT

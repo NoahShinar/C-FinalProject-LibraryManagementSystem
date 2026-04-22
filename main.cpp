@@ -49,7 +49,7 @@ using namespace std;
 
 int main() {
 
-    FileHandler createAccount;
+    FileHandler createAccount, removeAccount;
     bool validName = false;
     int choice = 0;
     int itemChoiceAdd = 0;
@@ -58,14 +58,16 @@ int main() {
     int typeChoice = 0;
     string name = "";
 
-    while (choice != 7) {
+    while (choice != 9) {
         cout << "1. add new account" << endl; // Done
-        cout << "2. add book or magazine" << endl;
-        cout << "3. borrow book or magazine" << endl;
-        cout << "4. return book or magazine" << endl;
-        cout << "5. view account" << endl;
-        cout << "6. request extension" << endl;
-        cout << "7. exit program" << endl; // Done
+        cout << "2. remove account" << endl; // Done but confirmation and checking if file exists is broken
+        cout << "3. add book or magazine to the library (staff and facility only)" << endl;
+        cout << "4. remove book or magazine from the library (staff and facility only)" << endl;
+        cout << "5. borrow book or magazine" << endl;
+        cout << "6. return book or magazine" << endl;
+        cout << "7. view account" << endl;
+        cout << "8. request extension" << endl;
+        cout << "9. exit program" << endl; // Done
 
         cout << "choice: ";
         cin >> choice;
@@ -85,6 +87,9 @@ int main() {
 
                     if (name.find(' ') != string::npos || name.empty()) {
                         cout << "Invalid name. Please do not use spaces." << endl;
+                    }
+                    else if (createAccount.AccountExists(name)) {
+                        cout << "Account " << name << " already exists." << endl;
                     }
                     else {
                         validName = true;
@@ -117,7 +122,28 @@ int main() {
                 break;
 
             case 2:
+                validName = false;
 
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+                while (!validName) {
+
+                    cout << "Enter account name (no spaces): ";
+                    getline(cin, name);
+
+                    if (name.find(' ') != string::npos || name.empty()) {
+                        cout << "Invalid name. Please do not use spaces." << endl;
+                    }
+                    else {
+                        validName = true;
+                    }
+                }
+
+                removeAccount.removeAccount(name);
+
+                break;
+
+            case 3:
                 cout << "1. book" << endl << "2. magazine" << endl;
                 cin >> itemChoiceAdd;
                 if (itemChoiceAdd == 1) {
@@ -131,7 +157,11 @@ int main() {
                 }
                 break;
 
-            case 3:
+            case 4:
+                // remove book or magazine from the library (staff and facility only)
+                break;
+
+            case 5:
                 cout << "1. book" << endl << "2. magazine" << endl;
                 cin >> itemChoiceBorrow;
                 if (itemChoiceBorrow == 1) {
@@ -145,7 +175,7 @@ int main() {
                 }
                 break;
 
-            case 4:
+            case 6:
                 cout << "1. book" << endl << "2. magazine" << endl;
                 cin >> itemChoiceReturn;
                 if (itemChoiceReturn == 1) {
@@ -159,15 +189,15 @@ int main() {
                 }
                 break;
 
-            case 5:
+            case 7:
                 // view account
                 break;
 
-            case 6:
+            case 8:
                 // request extension
                 break;
 
-            case 7:
+            case 9:
                 break;
 
             default:

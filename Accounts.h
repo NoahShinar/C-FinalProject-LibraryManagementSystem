@@ -21,6 +21,7 @@ class Accounts {
         string borrowedBooks();
         string borrowedMagazines();
         int maxBorrowTime(int inputType);
+        string ReviewAccount();
 };
 
 
