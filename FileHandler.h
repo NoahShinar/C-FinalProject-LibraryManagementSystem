@@ -11,6 +11,7 @@
 using namespace std;
 
 class FileHandler {
+    friend class Library;
     private:
         const string ACCOUNTS_FILE = "/home/noahs/CLionProjects/FinalProject/RegisteredAccounts.txt";
         const string LIBRARY_FILE = "/home/noahs/CLionProjects/FinalProject/Library.txt";

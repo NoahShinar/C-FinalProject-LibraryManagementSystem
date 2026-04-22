@@ -7,15 +7,21 @@
 
 #include "Book.h"
 #include "Magazine.h"
+#include "FileHandler.h"
+#include "Accounts.h"
 #include <string>
 
 using namespace std;
 
 class Library {
-public:
+    private:
+        FileHandler fileReference;
+        string input = "";
+        int lineCount = 0;
+
+    public:
         string listBooks();
         string listMagazines();
-        string listMembers();
 };
 
 
