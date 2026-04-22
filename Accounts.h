@@ -2,6 +2,13 @@
 // Created by noahs on 3/24/26.
 //
 
+/**
+* Accounts.h:
+ * Header file for Account.cpp
+ *
+ *  @authors Noah Shinar and Kami Iwanski
+ */
+
 #ifndef FINALPROJECT_ACCOUNTS_H
 #define FINALPROJECT_ACCOUNTS_H
 
