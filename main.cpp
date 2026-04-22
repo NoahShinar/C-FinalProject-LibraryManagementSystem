@@ -98,7 +98,7 @@ int main() {
 
                 while (typeChoice != 1 && typeChoice != 2 && typeChoice != 3) {
                     cout << "1. Student" << endl;
-                    cout << "2. Facility" << endl;
+                    cout << "2. Faculty" << endl;
                     cout << "3. Staff" << endl;
                     cin >> typeChoice;
 
@@ -113,7 +113,7 @@ int main() {
                     cout << endl << "Account Name: " << name << " Account Type: Student" << endl << endl;
                 }
                 else if (typeChoice == 2) {
-                    cout << endl << "Account Name: " << name << " Account Type: Facility" << endl << endl;
+                    cout << endl << "Account Name: " << name << " Account Type: Faculty" << endl << endl;
                 }
                 else if (typeChoice == 3) {
                     cout << endl << "Account Name: " << name << " Account Type: Staff" << endl << endl;
