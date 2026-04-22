@@ -3,12 +3,15 @@
 //
 
 /**
- *Implements book class functions
- *includes:
- *display borrowed books
- *borrows and returns books
- *sets and extends due dates
- */
+*Book.cpp
+*Implements book class functions
+*includes:
+*display borrowed books
+*borrows and returns books
+*sets and extends due dates
+*
+*@author Kami Iwanski
+*/
 
 #include "Book.h"
 #include <iostream>
