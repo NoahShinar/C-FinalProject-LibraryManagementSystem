@@ -2,6 +2,13 @@
 // Coded by Kami I. on 4/20/26.
 //
 
+/**
+ *Magazine.cpp:
+ *
+ *Description: Reads information on the requested magazine
+ *
+ */
+
 #include "Magazine.h"
 
 Magazine::Magazine()
