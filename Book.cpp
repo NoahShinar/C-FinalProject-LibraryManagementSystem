@@ -2,6 +2,14 @@
 // Coded by Kami I. on 3/30/26.
 //
 
+/**
+ *Implements book class functions
+ *includes:
+ *display borrowed books
+ *borrows and returns books
+ *sets and extends due dates
+ */
+
 #include "Book.h"
 #include <iostream>
 
