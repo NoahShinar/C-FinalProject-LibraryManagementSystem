@@ -15,7 +15,8 @@ string Accounts::borrowedMagazines() {
 }
 
 int Accounts::maxBorrowTime(int inputType) {
-
+    // Students are allowed to borrow a maximum of 5 books at a time, while faculty and staff can borrow up to 10 books.
+    // Handle fines of $1.75 per day on late books.
     type = static_cast<AccountTypeEnum>(inputType);
 
     if (type == AccountTypeEnum::STUDENT) {
