@@ -1,5 +1,5 @@
 //
-// Coded by Kami I. on 3/30/36.
+// Coded by Kami I. on 3/30/36. Updated by Noah S on 4/21/26.
 //
 
 #include "Accounts.h"
@@ -30,6 +30,24 @@ int Accounts::maxBorrowTime(int inputType) {
     }
 }
 string Accounts::ReviewAccount() {
+    string accountInfo = "Account Type: ";
 
+    if (type == AccountTypeEnum::STUDENT) {
+        accountInfo += "Student";
+    }
+    else if (type == AccountTypeEnum::FACULTY) {
+        accountInfo += "Faculty";
+    }
+    else if (type == AccountTypeEnum::STAFF) {
+        accountInfo += "Staff";
+    }
+    else {
+        accountInfo += "Unknown";
+    }
+
+    accountInfo += "\nBooks: " + borrowedBooks();
+    accountInfo += "\nMagazines: " + borrowedMagazines();
+
+    return accountInfo;
 }
 
