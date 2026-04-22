@@ -2,6 +2,14 @@
 // Coded by noah s on 3/24/26.
 //
 
+/**
+ * Book.h:
+ * Header file for Book.cpp
+ *
+ * @author Noah S
+ * @author Kami I
+*/
+
 #ifndef FINALPROJECT_BOOK_H
 #define FINALPROJECT_BOOK_H
 

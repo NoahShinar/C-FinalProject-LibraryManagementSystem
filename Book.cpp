@@ -133,6 +133,3 @@ void Book::extendDueDate (Book &b)
  b.dueDay += 10;
     cout << "Due date extended by 10 days. Enjoy!\n";
 }
-
-
-
