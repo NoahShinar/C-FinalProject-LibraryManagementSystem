@@ -2,6 +2,8 @@
 // Created by noahs on 4/1/26. Updated by Kami I. on 4/22/26.
 //
 
+//will add a /* if need be for each class, wasn't sure if we needed to for every class or not */
+
 #include "FileHandler.h"
 #include "Accounts.h"
 #include "Library.h"
