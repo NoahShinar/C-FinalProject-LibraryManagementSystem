@@ -52,6 +52,12 @@ int Accounts::maxBorrowTime(int inputType) {
         return 30; //default
     }
 }
+
+/**
+ * Function to review account info
+ *
+ * @return account type, borrowed books, and magazines
+ */
 string Accounts::ReviewAccount() {
     string accountInfo = "Account Type: ";
 
