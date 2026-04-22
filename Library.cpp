@@ -1,17 +1,23 @@
 //
-// Created by noahs on 3/24/26.
+// Coded by Kami I. on 4/20/26.
 //
 
 #include "Library.h"
+#include <string>
 
 using namespace std;
 
-string listBooks() {
-
+string Library::listBooks()
+{
+    return "Listing books: ";
 }
-string listMagazines() {
 
+string Library::listMagazines()
+{
+    return "Listing magazines: ";
 }
-string listMembers() {
 
+string Library::listMembers()
+{
+    return "Listing members: ";
 }
