@@ -5,8 +5,6 @@
 #ifndef FINALPROJECT_LIBRARY_H
 #define FINALPROJECT_LIBRARY_H
 
-#include "Book.h"
-#include "Magazine.h"
 #include "FileHandler.h"
 #include "Accounts.h"
 #include <string>
