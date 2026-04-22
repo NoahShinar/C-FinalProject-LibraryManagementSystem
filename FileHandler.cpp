@@ -91,7 +91,7 @@ string FileHandler::removeAccount(string name) {
 
     // Swap the files
     remove(ACCOUNTS_FILE.c_str()); // Delete old file
-    rename(TEMP_FILE.c_str(), ACCOUNTS_FILE.c_str()); // Rename new file to original name
+    rename(TEMP_FILE.c_str(), ACCOUNTS_FILE.c_str()); // Rename temp file to accounts file name
 
     if (found) {
         return "Account successfully removed";
