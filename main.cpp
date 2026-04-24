@@ -37,6 +37,7 @@ The Library system needs to:
 #include <iomanip>
 #include <limits>
 
+#include "Book.h"
 #include "FileHandler.h"
 
 using namespace std;
@@ -50,6 +51,7 @@ using namespace std;
 int main() {
 
     FileHandler createAccount, removeAccount;
+    Book createBook, removeBook;
     bool validName = false;
     int choice = 0;
     int itemChoiceAdd = 0;
