@@ -23,7 +23,7 @@ using namespace std;
  */
 string Library::listBooks() {
 
-    ifstream file(fileReference.LIBRARY_FILE);
+    ifstream file(fileReference.BOOKS_FILE);
 
     if (!file) {
         return "Error: Could not open file";
@@ -31,16 +31,10 @@ string Library::listBooks() {
 
     while (getline(file, input)) {
         lineCount++;
-        if (lineCount <= 50) {
-            cout << "Book: " << input << endl;
-        }
-        else {
-            break;
-        }
+        cout << "Book: " << input << endl;
     }
 
     file.close();
-    return "List of books completed.";
 }
 
 /**
@@ -50,7 +44,7 @@ string Library::listBooks() {
  */
 string Library::listMagazines() {
 
-    ifstream file(fileReference.LIBRARY_FILE);
+    ifstream file(fileReference.MAGAZINES_FILE);
 
     if (!file) {
         return "Error: Could not open file";
@@ -58,14 +52,8 @@ string Library::listMagazines() {
 
     while (getline(file, input)) {
         lineCount++;
-        if (lineCount >= 51 && lineCount <= 100) {
-            cout << "Magazine: " << input << endl;
-        }
-        if (lineCount > 100) {
-            break;
-        }
+        cout << "Magazine: " << input << endl;
     }
 
     file.close();
-    return "List of magazines completed.";
 }

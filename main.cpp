@@ -144,7 +144,7 @@ int main() {
                 break;
 
             case 3:
-                cout << "1. book" << endl << "2. magazine" << endl;
+                cout << "1. Add book" << endl << "2. Add magazine" << endl;
                 cin >> itemChoiceAdd;
                 if (itemChoiceAdd == 1) {
 
