@@ -4,7 +4,7 @@
 
 /**
  * FileHandler.cpp:
- * Class to handle Library.txt and RegisteredAccounts.txt
+ * Class to handle Books.txt, Magazines.txt, and RegisteredAccounts.txt
  *
  * @author Noah S
  * @author Kami I
