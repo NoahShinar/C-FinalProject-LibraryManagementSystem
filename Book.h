@@ -39,6 +39,7 @@ class Book {
         void setDueDate(Book &b, int day, int month, int year, string accountType);
         void extendDueDate(Book &b);
         string addBook(string title, string author, string classification);
+        string removeBook(string title);
 };
 
 

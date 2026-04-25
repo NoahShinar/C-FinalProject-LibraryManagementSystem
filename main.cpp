@@ -62,6 +62,7 @@ int main() {
     int itemChoiceAdd = 0;
     int itemChoiceBorrow = 0;
     int itemChoiceReturn = 0;
+    int itemChoiceRemove = 0;
     int typeChoice = 0;
 
     string name = "";
@@ -78,7 +79,7 @@ int main() {
         cout << "1. add new account" << endl; // Done
         cout << "2. remove account" << endl; // Done
         cout << "3. add book or magazine to the library (staff and facility only)" << endl; // Done
-        cout << "4. remove book or magazine from the library (staff and facility only)" << endl;
+        cout << "4. remove book or magazine from the library (staff and facility only)" << endl; // Done
         cout << "5. borrow book or magazine" << endl;
         cout << "6. return book or magazine" << endl;
         cout << "7. view account" << endl;
@@ -196,7 +197,26 @@ int main() {
                 break;
 
             case 4:
-                // remove book or magazine from the library (staff and facility only)
+                cout << "1. Remove book 2. Remove magazine: " << endl;
+                cin >> itemChoiceRemove;
+
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+                if (itemChoiceRemove == 1) {
+                    cout << "Title: ";
+                    getline(cin, addBookTitle);
+
+                    cout << removeBook.removeBook(addBookTitle);
+                }
+                else if (itemChoiceRemove == 2) {
+                    cout << "Title: ";
+                    getline(cin, addMagazineTitle);
+
+                    cout << removeMagazine.removeMagazine(addMagazineTitle);
+                }
+                else {
+                    cout << "Invalid choice" << endl;
+                }
                 break;
 
             case 5:

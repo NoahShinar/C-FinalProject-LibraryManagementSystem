@@ -149,3 +149,47 @@ string Book::addBook(string title, string author, string classification) {
 
     return "Book added successfully";
 }
+
+/**
+ * Function that removes a book from the library
+ *
+ * @param title title of book
+ *
+ * @return string into Book.txt of the removed book
+ */
+string Book::removeBook(string title) {
+
+    ifstream file(fileReference.BOOKS_FILE);
+    ofstream tempFile(fileReference.TEMP_FILE); // Creates temp file
+
+    if (!file || !tempFile) {
+        cerr << "Unable to open file: " << fileReference.BOOKS_FILE << endl;
+        return "Error: Could not open file";
+    }
+
+    string line;
+    bool found = false;
+
+    while (getline(file, line)) {
+        if (line.find(" - " + title + " - ") != string::npos) {
+            found = true;
+        }
+        else {
+            tempFile << line << endl;
+        }
+    }
+
+    file.close();
+    tempFile.close();
+
+    // Swap the files
+    remove(fileReference.BOOKS_FILE.c_str()); // Delete old file
+    rename(fileReference.TEMP_FILE.c_str(), fileReference.BOOKS_FILE.c_str()); // Rename temp file to accounts file name
+
+    if (found) {
+        return "Book removed successfully";
+    }
+    else {
+        return "Book not found";
+    }
+}
