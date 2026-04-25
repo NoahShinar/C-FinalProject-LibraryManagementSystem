@@ -81,13 +81,13 @@ string FileHandler::RegisterAccount(string name, AccountTypeEnum type) {
     fstream file(ACCOUNTS_FILE, ios::app);
     if (!file) {
         cerr << "Unable to open file: " << ACCOUNTS_FILE << endl;
-        return "Error: Could not open file"; //error code
+        return "Error: Could not open file";
     }
 
     file << name << " " << enumToString(type) << endl;
     file.close();
 
-    return "Account registered successfully"; //easy to compute case
+    return "Account registered successfully";
 }
 
 /**

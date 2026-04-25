@@ -36,8 +36,10 @@ The Library system needs to:
 #include <fstream>
 #include <iomanip>
 #include <limits>
+#include <istream>
 
 #include "Book.h"
+#include "Magazine.h"
 #include "FileHandler.h"
 
 using namespace std;
@@ -51,19 +53,29 @@ using namespace std;
 int main() {
 
     FileHandler createAccount, removeAccount;
-    Book createBook, removeBook;
+    Book addBook, removeBook;
+    Magazine addMagazine, removeMagazine;
+
     bool validName = false;
+
     int choice = 0;
     int itemChoiceAdd = 0;
     int itemChoiceBorrow = 0;
     int itemChoiceReturn = 0;
     int typeChoice = 0;
+
     string name = "";
+    string addBookTitle = "";
+    string addBookAuthor = "";
+    string addBookClassification = "";
+    string addMagazineTitle = "";
+    string addMagazineAuthor = "";
+    string addMagazineClassification = "";
 
     while (choice != 9) {
         cout << "1. add new account" << endl; // Done
         cout << "2. remove account" << endl; // Done but confirmation and checking if file exists is broken
-        cout << "3. add book or magazine to the library (staff and facility only)" << endl;
+        cout << "3. add book or magazine to the library (staff and facility only)" << endl; // Done
         cout << "4. remove book or magazine from the library (staff and facility only)" << endl;
         cout << "5. borrow book or magazine" << endl;
         cout << "6. return book or magazine" << endl;
@@ -109,7 +121,7 @@ int main() {
                     }
                 }
 
-                createAccount.RegisterAccount(name, static_cast<AccountTypeEnum>(typeChoice - 1));
+                cout << createAccount.RegisterAccount(name, static_cast<AccountTypeEnum>(typeChoice - 1));
 
                 if (typeChoice == 1) {
                     cout << endl << "Account Name: " << name << " Account Type: Student" << endl << endl;
@@ -141,18 +153,40 @@ int main() {
                     }
                 }
 
-                removeAccount.removeAccount(name);
+                cout << removeAccount.removeAccount(name);
 
                 break;
 
             case 3:
-                cout << "1. Add book" << endl << "2. Add magazine" << endl;
+                cout << "1. Add book 2. Add magazine: ";
                 cin >> itemChoiceAdd;
+
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
                 if (itemChoiceAdd == 1) {
 
+                    cout << "Title: ";
+                    getline(cin, addBookTitle);
+
+                    cout << "Author: ";
+                    getline(cin, addBookAuthor);
+
+                    cout << "Classification: ";
+                    getline(cin, addBookClassification);
+
+                    cout << addBook.addBook(addBookTitle, addBookAuthor, addBookClassification) << endl;
                 }
                 else if (itemChoiceAdd == 2) {
+                    cout << "Title: ";
+                    getline(cin, addMagazineTitle);
 
+                    cout << "Author: ";
+                    getline(cin, addMagazineAuthor);
+
+                    cout << "Classification: ";
+                    getline(cin, addMagazineClassification);
+
+                    cout << addMagazine.addMagazine(addMagazineTitle, addMagazineAuthor, addMagazineClassification) << endl;
                 }
                 else {
                     cout << "Invalid choice" << endl;

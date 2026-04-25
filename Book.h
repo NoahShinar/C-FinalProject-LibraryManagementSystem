@@ -14,11 +14,14 @@
 #define FINALPROJECT_BOOK_H
 
 #include <string>
+#include "FileHandler.h"
 
 using namespace std;
 
 class Book {
     private:
+        FileHandler fileReference;
+
         string title;
         string author;
         string classification; // organizes in alphebetical order and catagories
@@ -35,6 +38,7 @@ class Book {
         void returnBook(Book &b, int currentDay, int currentMonth, int currentYear);
         void setDueDate(Book &b, int day, int month, int year, string accountType);
         void extendDueDate(Book &b);
+        string addBook(string title, string author, string classification);
 };
 
 

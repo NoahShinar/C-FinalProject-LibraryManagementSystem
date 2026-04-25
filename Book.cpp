@@ -3,24 +3,28 @@
 //
 
 /**
-*Book.cpp:
-*Description: Class that implements book class functions
+* Book.cpp:
+* Description: Class that implements book class functions
 *
-*Handles:
+* Handles:
 * -display borrowed books
 * -borrows and returns books
 * -sets and extends due dates
+* -add books to Books.txt
 *
-*@author Kami Iwanski
+* @author Kami Iwanski
+* @author Noah Shinar
 */
 
 #include "Book.h"
+#include "FileHandler.h"
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
 /**
- *Description: Function to display the book information
+ * Description: Function to display the book information
  *
  * @param b Book being displayed
  *
@@ -35,7 +39,7 @@ void Book::displayBook (Book b) {
 }
 
 /**
- *Description: Function that loans (borrows) a book for the user
+ * Description: Function that loans (borrows) a book for the user
  *
  * @param b Book being loaned
  *
@@ -111,7 +115,7 @@ void Book::setDueDate (Book &b, int day, int month, int year, string accountType
 }
 
 /**
- *Description: Function that extends the due date on a loaned book
+ * Description: Function that extends the due date on a loaned book
  *
  * @param b Book with the due date that is being modified
  *
@@ -120,4 +124,28 @@ void Book::setDueDate (Book &b, int day, int month, int year, string accountType
 void Book::extendDueDate (Book &b) {
     b.dueDay += 10;
     cout << "Due date extended by 10 days. Enjoy!\n";
+}
+
+/**
+ * Function that adds a book to the library
+ *
+ * @param title title of book
+ * @param author author of book
+ * @param classification organizes in alphebetical order and catagories
+ *
+ * @return string into book.txt of the added book
+ */
+string Book::addBook(string title, string author, string classification) {
+
+    fstream file(fileReference.BOOKS_FILE, ios::out | ios::app);
+
+    if (!file) {
+        cerr << "Unable to open file: " << fileReference.BOOKS_FILE << endl;
+        return "Error: Could not open file";
+    }
+
+    file << classification << " - " << title << " - " << author << endl;
+    file.close();
+
+    return "Book added successfully";
 }

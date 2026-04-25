@@ -20,6 +20,8 @@ using namespace std;
 
 class FileHandler {
     friend class Library;
+    friend class Book;
+    friend class Magazine;
     private:
         const string ACCOUNTS_FILE = "/home/noahs/CLionProjects/FinalProject/RegisteredAccounts.txt";
         const string BOOKS_FILE = "/home/noahs/CLionProjects/FinalProject/Books.txt";

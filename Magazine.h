@@ -6,21 +6,27 @@
 #define FINALPROJECT_MAGAZINE_H
 
 #include <string>
+#include "FileHandler.h"
 
 using namespace std;
 
 class Magazine {
-    public:
-        string title;
-        string author;
+    private:
+        FileHandler fileReference;
+
+        string title = "";
+        string author = "";
+        string classification = "";
         bool isBorrowed;
-        int yearPublished;
+        int yearPublished = 0;
 
-        int dueDay;
-        int dueMonth;
-        int dueYear;
+        int dueDay = 0;
+        int dueMonth = 0;
+        int dueYear = 0;
 
+    public:
         Magazine();
+        string addMagazine(string title, string author, string classification);
 };
 
 
