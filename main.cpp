@@ -80,10 +80,10 @@ int main() {
         cout << "2. remove account" << endl; // Done
         cout << "3. add book or magazine to the library (staff and facility only)" << endl; // Done
         cout << "4. remove book or magazine from the library (staff and facility only)" << endl; // Done
-        cout << "5. borrow book or magazine" << endl;
-        cout << "6. return book or magazine" << endl;
-        cout << "7. view account" << endl;
-        cout << "8. request extension" << endl;
+        cout << "5. borrow book or magazine" << endl; // display available books/magazines, remove from Book.txt/Magazine.txt, display on account
+        cout << "6. return book or magazine" << endl; // display borrowed books/magazines, add to Book.txt/Magazine.txt, remove from account
+        cout << "7. view account" << endl; // display account info: name, type, borrowed books/magazines, due dates
+        cout << "8. request extension" << endl; // extend due date to corrisponding account type
         cout << "9. exit program" << endl; // Done
 
         cout << "choice: ";
@@ -220,8 +220,11 @@ int main() {
                 break;
 
             case 5:
-                cout << "1. book" << endl << "2. magazine" << endl;
+                cout << "1. Borrow book 2. Borrow magazine" << endl;
                 cin >> itemChoiceBorrow;
+
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
                 if (itemChoiceBorrow == 1) {
 
                 }
@@ -234,8 +237,11 @@ int main() {
                 break;
 
             case 6:
-                cout << "1. book" << endl << "2. magazine" << endl;
+                cout << "1. Return book 2. Return magazine" << endl;
                 cin >> itemChoiceReturn;
+
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
                 if (itemChoiceReturn == 1) {
 
                 }
