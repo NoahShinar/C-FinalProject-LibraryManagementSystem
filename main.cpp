@@ -73,9 +73,11 @@ int main() {
     string addMagazineClassification = "";
 
     while (choice != 9) {
+
+        cout << endl;
         cout << "1. add new account" << endl; // Done
-        cout << "2. remove account" << endl; // Done but confirmation and checking if file exists is broken
-        cout << "3. add book or magazine to the library (staff and facility only)" << endl; // Done
+        cout << "2. remove account" << endl; // Done
+        cout << "3. add book or magazine to the library (staff and facility only)" << endl;
         cout << "4. remove book or magazine from the library (staff and facility only)" << endl;
         cout << "5. borrow book or magazine" << endl;
         cout << "6. return book or magazine" << endl;

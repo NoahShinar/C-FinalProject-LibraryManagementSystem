@@ -126,7 +126,7 @@ string FileHandler::removeAccount(string name) {
     rename(TEMP_FILE.c_str(), ACCOUNTS_FILE.c_str()); // Rename temp file to accounts file name
 
     if (found) {
-        return "Account successfully removed";
+        return "Account removed successfully";
     }
     else {
         return "Account not found";
