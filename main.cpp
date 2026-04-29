@@ -53,8 +53,8 @@ using namespace std;
 int main() {
 
     FileHandler createAccount, removeAccount;
-    Book addBook, removeBook;
-    Magazine addMagazine, removeMagazine;
+    Book addBook, removeBook, printBooks, borrowBook;
+    Magazine addMagazine, removeMagazine, printMagazines, BorrowMagazine;
 
     bool validName = false;
 
@@ -80,8 +80,8 @@ int main() {
         cout << "2. remove account" << endl; // Done
         cout << "3. add book or magazine to the library (staff and facility only)" << endl; // Done
         cout << "4. remove book or magazine from the library (staff and facility only)" << endl; // Done
-        cout << "5. borrow book or magazine" << endl; // display available books/magazines, remove from Book.txt/Magazine.txt, display on account
-        cout << "6. return book or magazine" << endl; // display borrowed books/magazines, add to Book.txt/Magazine.txt, remove from account
+        cout << "5. borrow book or magazine" << endl; // display books/magazines (DONE), set book/magazine status to borrowed in Book.txt/Magazine.txt, display on account
+        cout << "6. return book or magazine" << endl; // display books/magazines in account, set book/magazine status to available in Book.txt/Magazine.txt, remove from account
         cout << "7. view account" << endl; // display account info: name, type, borrowed books/magazines, due dates
         cout << "8. request extension" << endl; // extend due date to corrisponding account type
         cout << "9. exit program" << endl; // Done
@@ -226,10 +226,11 @@ int main() {
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
                 if (itemChoiceBorrow == 1) {
-
+                    printBooks.displayBooks();
+                    borrowBook.borrowBook(selection); // selection = line number make user able to select number to take out book
                 }
                 else if (itemChoiceBorrow == 2) {
-
+                    printMagazines.displayMagazines();
                 }
                 else {
                     cout << "Invalid choice" << endl;

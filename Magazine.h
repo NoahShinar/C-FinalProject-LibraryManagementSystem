@@ -26,6 +26,9 @@ class Magazine {
 
     public:
         Magazine();
+
+        void displayMagazines();
+
         string addMagazine(string title, string author, string classification);
         string removeMagazine(string title);
 };

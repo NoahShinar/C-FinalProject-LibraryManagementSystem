@@ -24,18 +24,36 @@
 using namespace std;
 
 /**
- * Description: Function to display the book information
+ * Description: Function to display books
  *
- * @param b Book being displayed
- *
- * @return book information
+ * @return everything in Book.txt
  */
-void Book::displayBook (Book b) {
-     cout << "Title: " << b.title << endl;
-     cout << "Author: " << b.author << endl;
-     cout << "Classification: " << b.classification << endl;
-     cout << "Year: " << b.yearPublished << endl;
-     cout << "Borrowed Status: " << (b.isBorrowed ? "Borrowed" : "Still available") << endl;
+void Book::displayBooks() {
+     // cout << "Title: " << b.title << endl;
+     // cout << "Author: " << b.author << endl;
+     // cout << "Classification: " << b.classification << endl;
+     // cout << "Year: " << b.yearPublished << endl;
+     // cout << "Borrowed Status: " << (b.isBorrowed ? "Borrowed" : "Still available") << endl;
+
+    int lineCount = 1;
+    string line;
+    ifstream file(fileReference.BOOKS_FILE);
+
+    if (!file) {
+        cerr << "Error opening input file" << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    cout << "Books:" << endl;
+
+    while (getline(file, line)) {
+        if (!line.empty()) {
+            cout << lineCount << ". " << line << endl;
+            lineCount++;
+        }
+    }
+
+    file.close();
 }
 
 /**
@@ -45,13 +63,45 @@ void Book::displayBook (Book b) {
  *
  * @return Status of borrowed book (success or error)
  */
-void Book::borrowBook (Book &b) {
-    if (!b.isBorrowed) {
-     b.isBorrowed = true;
-        cout << "Book successfully borrowed\n";
+string Book::borrowBook (int selection) {
+    ifstream file(fileReference.BOOKS_FILE);
+    ofstream tempFile(fileReference.TEMP_FILE);
+
+    if (!file || !tempFile) {
+        cerr << "Unable to open file" << endl;
+        return "Error: Could not open file";
+    }
+
+    string line;
+    int currentLine = 1;
+    bool found = false;
+
+    while (getline(file, line)) {
+        if (currentLine == selection) {
+            // Check if line contains AVAILABLE before replacing
+            size_t pos = line.find(" - AVAILABLE");
+            if (pos != string::npos) {
+                // Remove AVAILABLE and add BORROWED
+                line.replace(pos, 12, " - BORROWED");
+                found = true;
+            }
+        }
+        tempFile << line << endl;
+        currentLine++;
+    }
+
+    file.close();
+    tempFile.close();
+
+    // Replace original file with the updated temp file
+    remove(fileReference.BOOKS_FILE.c_str());
+    rename(fileReference.TEMP_FILE.c_str(), fileReference.BOOKS_FILE.c_str());
+
+    if (found) {
+        return "Book status updated to BORROWED";
     }
     else {
-        cout << "Book already borrowed\n";
+        return "Error: Book selection invalid or already borrowed";
     }
 }
 
@@ -144,7 +194,7 @@ string Book::addBook(string title, string author, string classification) {
         return "Error: Could not open file";
     }
 
-    file << classification << " - " << title << " - " << author << endl;
+    file << classification << " - " << title << " - " << author << " - " << "AVAILABLE" << endl;
     file.close();
 
     return "Book added successfully";

@@ -41,6 +41,34 @@ Magazine::Magazine() {
 }
 
 /**
+ * Description: Function to display the magazines
+ *
+ * @return everything in Magaziens.txt
+ */
+void Magazine::displayMagazines() {
+
+    int lineCount = 1;
+    string line;
+    ifstream file(fileReference.MAGAZINES_FILE);
+
+    if (!file) {
+        cerr << "Error opening input file" << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    cout << "Magazines:" << endl;
+
+    while (getline(file, line)) {
+        if (!line.empty()) {
+            cout << lineCount << ". " << line << endl;
+            lineCount++;
+        }
+    }
+
+    file.close();
+}
+
+/**
  * Description: adds magazines to Magazine.txt
  *
  * @param title title of magazine
@@ -57,7 +85,7 @@ string Magazine::addMagazine(string title, string author, string classification)
         return "Error: Could not open file";
     }
 
-    file << classification << " - " << title << " - " << author << endl;
+    file << classification << " - " << title << " - " << author << " - " << "AVAILABLE" << endl;
     file.close();
 
     return "Magazine added successfully";
