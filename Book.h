@@ -34,7 +34,7 @@ class Book {
 
     public:
         void displayBooks();
-        string borrowBook(int selection);
+        string borrowBook(int selection, int account);
         void returnBook(Book &b, int currentDay, int currentMonth, int currentYear);
         void setDueDate(Book &b, int day, int month, int year, string accountType);
         void extendDueDate(Book &b);

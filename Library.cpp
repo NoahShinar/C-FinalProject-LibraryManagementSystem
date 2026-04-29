@@ -11,48 +11,68 @@
  */
 
 #include "Library.h"
+#include "FileHandler.h"
 #include <iostream>
 #include <fstream>
 
 using namespace std;
 
 /**
- *Description: List of all books the library possesses
+ * Description: Function to display books
  *
- * @return full list of books in the library
+ * @return everything in Book.txt
  */
-string Library::listBooks() {
+void Library::displayBooks() {
+    // cout << "Title: " << b.title << endl;
+    // cout << "Author: " << b.author << endl;
+    // cout << "Classification: " << b.classification << endl;
+    // cout << "Year: " << b.yearPublished << endl;
+    // cout << "Borrowed Status: " << (b.isBorrowed ? "Borrowed" : "Still available") << endl;
 
+    int lineCount = 1;
+    string line;
     ifstream file(fileReference.BOOKS_FILE);
 
     if (!file) {
-        return "Error: Could not open file";
+        cerr << "Error opening input file" << endl;
+        exit(EXIT_FAILURE);
     }
 
-    while (getline(file, input)) {
-        lineCount++;
-        cout << "Book: " << input << endl;
+    cout << "Books:" << endl;
+
+    while (getline(file, line)) {
+        if (!line.empty()) {
+            cout << lineCount << ". " << line << endl;
+            lineCount++;
+        }
     }
 
     file.close();
 }
 
 /**
- *Description: List all magazines the library possesses
+ * Description: Function to display the magazines
  *
- * @return full list of magazines in the library
+ * @return everything in Magaziens.txt
  */
-string Library::listMagazines() {
+void Library::displayMagazines() {
 
+    int lineCount = 1;
+    string line;
     ifstream file(fileReference.MAGAZINES_FILE);
 
     if (!file) {
-        return "Error: Could not open file";
+        cerr << "Error opening input file" << endl;
+        exit(EXIT_FAILURE);
     }
 
-    while (getline(file, input)) {
-        lineCount++;
-        cout << "Magazine: " << input << endl;
+    cout << "Magazines:" << endl;
+
+    while (getline(file, line)) {
+        if (!line.empty()) {
+            cout << lineCount << ". " << line << endl;
+            lineCount++;
+        }
     }
 
     file.close();

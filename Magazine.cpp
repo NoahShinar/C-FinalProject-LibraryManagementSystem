@@ -16,7 +16,7 @@
 * @author Noah Shinar
 */
 
-
+#include "FileHandler.h"
 #include "Magazine.h"
 #include <string>
 #include <iostream>
@@ -38,34 +38,6 @@ Magazine::Magazine() {
     dueDay = 0;
     dueMonth = 0;
     dueYear = 0;
-}
-
-/**
- * Description: Function to display the magazines
- *
- * @return everything in Magaziens.txt
- */
-void Magazine::displayMagazines() {
-
-    int lineCount = 1;
-    string line;
-    ifstream file(fileReference.MAGAZINES_FILE);
-
-    if (!file) {
-        cerr << "Error opening input file" << endl;
-        exit(EXIT_FAILURE);
-    }
-
-    cout << "Magazines:" << endl;
-
-    while (getline(file, line)) {
-        if (!line.empty()) {
-            cout << lineCount << ". " << line << endl;
-            lineCount++;
-        }
-    }
-
-    file.close();
 }
 
 /**
@@ -135,3 +107,76 @@ string Magazine::removeMagazine(string title) {
     }
 }
 
+/**
+ * Description: Function that loans a magazine to the user
+ *
+ * @param account account to add borrowed magazine to
+ * @param selection magazine being loaned
+ *
+ * @return Status of borrowed magazine in Magazines.txt and RegisteredAccounts.txt
+ */
+string Magazine::borrowMagazine(int selection, int account) {
+    ifstream file(fileReference.MAGAZINES_FILE);
+    ofstream tempFile(fileReference.TEMP_FILE);
+
+    if (!file || !tempFile) {
+        return "Error: Could not open magazine files";
+    }
+
+    string line;
+    string magazineInfo = "";
+    int currentLine = 1;
+    bool magazineFound = false;
+
+    // 1. Update Magazines File
+    while (getline(file, line)) {
+        if (currentLine == selection) {
+            // Find "AVAILABLE" anywhere in the line to avoid spacing issues
+            size_t pos = line.find("AVAILABLE");
+            if (pos != string::npos) {
+                // Get the info part (everything before the last dash)
+                size_t lastDash = line.find_last_of('-', pos - 1);
+                magazineInfo = line.substr(0, lastDash - 1);
+
+                // Replace "AVAILABLE" with "UNAVAILABLE"
+                line.replace(pos, 9, "UNAVAILABLE");
+                magazineFound = true;
+            }
+        }
+        tempFile << line << endl;
+        currentLine++;
+    }
+    file.close();
+    tempFile.close();
+
+    if (!magazineFound) {
+        remove(fileReference.TEMP_FILE.c_str());
+        return "Error: Magazine already borrowed or not found.";
+    }
+
+    remove(fileReference.MAGAZINES_FILE.c_str());
+    rename(fileReference.TEMP_FILE.c_str(), fileReference.MAGAZINES_FILE.c_str());
+
+    // 2. Update Account File
+    ifstream accFile(fileReference.ACCOUNTS_FILE);
+    ofstream accTemp(fileReference.TEMP_FILE);
+
+    if (!accFile || !accTemp) return "Error: Could not open accounts file";
+
+    currentLine = 1;
+    while (getline(accFile, line)) {
+        if (currentLine == account) {
+            line += " | Borrowed: " + magazineInfo;
+        }
+        accTemp << line << endl;
+        currentLine++;
+    }
+
+    accFile.close();
+    accTemp.close();
+
+    remove(fileReference.ACCOUNTS_FILE.c_str());
+    rename(fileReference.TEMP_FILE.c_str(), fileReference.ACCOUNTS_FILE.c_str());
+
+    return "Magazine borrowed successfully.";
+}

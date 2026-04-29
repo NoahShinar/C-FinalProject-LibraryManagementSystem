@@ -14,12 +14,13 @@ using namespace std;
 class Library {
     private:
         FileHandler fileReference;
+
         string input = "";
         int lineCount = 0;
 
     public:
-        string listBooks();
-        string listMagazines();
+        void displayMagazines();
+        void displayBooks();
 };
 
 

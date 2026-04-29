@@ -10,6 +10,9 @@
  */
 
 #include "Accounts.h"
+#include "FileHandler.h"
+#include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -80,3 +83,29 @@ string Accounts::ReviewAccount() {
     return accountInfo;
 }
 
+/**
+ * Function to display all registered accounts
+ *
+ * return registered accounts list
+ */
+void Accounts::displayAccounts() {
+    int lineCount = 1;
+    string line;
+    ifstream file(fileReference.ACCOUNTS_FILE);
+
+    if (!file) {
+        cerr << "Error opening input file" << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    cout << endl << "Accounts:" << endl;
+
+    while (getline(file, line)) {
+        if (!line.empty()) {
+            cout << lineCount << ". " << line << endl;
+            lineCount++;
+        }
+    }
+
+    file.close();
+}

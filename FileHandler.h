@@ -14,7 +14,7 @@
 #define FINALPROJECT_FILEHANDLER_H
 
 #include <string>
-#include "Accounts.h"
+#include "AccountTypeEnum.h"
 
 using namespace std;
 
@@ -22,6 +22,7 @@ class FileHandler {
     friend class Library;
     friend class Book;
     friend class Magazine;
+    friend class Accounts;
 
     private:
         const string ACCOUNTS_FILE = "/home/noahs/CLionProjects/FinalProject/RegisteredAccounts.txt";

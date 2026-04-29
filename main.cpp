@@ -41,6 +41,7 @@ The Library system needs to:
 #include "Book.h"
 #include "Magazine.h"
 #include "FileHandler.h"
+#include "Library.h"
 
 using namespace std;
 
@@ -53,8 +54,10 @@ using namespace std;
 int main() {
 
     FileHandler createAccount, removeAccount;
-    Book addBook, removeBook, printBooks, borrowBook;
-    Magazine addMagazine, removeMagazine, printMagazines, BorrowMagazine;
+    Book addBook, removeBook, borrowBook;
+    Magazine addMagazine, removeMagazine, borrowMagazine;
+    Accounts displayAccounts;
+    Library printBooks, printMagazines;
 
     bool validName = false;
 
@@ -64,6 +67,8 @@ int main() {
     int itemChoiceReturn = 0;
     int itemChoiceRemove = 0;
     int typeChoice = 0;
+    int borrowNum = 0;
+    int accountNum = 0;
 
     string name = "";
     string addBookTitle = "";
@@ -80,7 +85,7 @@ int main() {
         cout << "2. remove account" << endl; // Done
         cout << "3. add book or magazine to the library (staff and facility only)" << endl; // Done
         cout << "4. remove book or magazine from the library (staff and facility only)" << endl; // Done
-        cout << "5. borrow book or magazine" << endl; // display books/magazines (DONE), set book/magazine status to borrowed in Book.txt/Magazine.txt, display on account
+        cout << "5. borrow book or magazine" << endl; // Done
         cout << "6. return book or magazine" << endl; // display books/magazines in account, set book/magazine status to available in Book.txt/Magazine.txt, remove from account
         cout << "7. view account" << endl; // display account info: name, type, borrowed books/magazines, due dates
         cout << "8. request extension" << endl; // extend due date to corrisponding account type
@@ -220,6 +225,12 @@ int main() {
                 break;
 
             case 5:
+                cout << "Select an account: ";
+                displayAccounts.displayAccounts();
+                cin >> accountNum;
+
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
                 cout << "1. Borrow book 2. Borrow magazine" << endl;
                 cin >> itemChoiceBorrow;
 
@@ -227,10 +238,19 @@ int main() {
 
                 if (itemChoiceBorrow == 1) {
                     printBooks.displayBooks();
-                    borrowBook.borrowBook(selection); // selection = line number make user able to select number to take out book
+
+                    cout << "Enter the number of the book you want to borrow: ";
+                    cin >> borrowNum;
+
+                    borrowBook.borrowBook(borrowNum, accountNum);
                 }
                 else if (itemChoiceBorrow == 2) {
                     printMagazines.displayMagazines();
+
+                    cout << "Enter the number of the magazine you want to borrow: ";
+                    cin >> borrowNum;
+
+                    borrowMagazine.borrowMagazine(borrowNum, accountNum);
                 }
                 else {
                     cout << "Invalid choice" << endl;

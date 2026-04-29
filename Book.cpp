@@ -24,46 +24,14 @@
 using namespace std;
 
 /**
- * Description: Function to display books
+ * Description: Function that loans a book to the user
  *
- * @return everything in Book.txt
+ * @param account account to add borrowed book to
+ * @param selection Book being loaned
+ *
+ * @return Status of borrowed book in Books.txt and RegisteredAccounts.txt
  */
-void Book::displayBooks() {
-     // cout << "Title: " << b.title << endl;
-     // cout << "Author: " << b.author << endl;
-     // cout << "Classification: " << b.classification << endl;
-     // cout << "Year: " << b.yearPublished << endl;
-     // cout << "Borrowed Status: " << (b.isBorrowed ? "Borrowed" : "Still available") << endl;
-
-    int lineCount = 1;
-    string line;
-    ifstream file(fileReference.BOOKS_FILE);
-
-    if (!file) {
-        cerr << "Error opening input file" << endl;
-        exit(EXIT_FAILURE);
-    }
-
-    cout << "Books:" << endl;
-
-    while (getline(file, line)) {
-        if (!line.empty()) {
-            cout << lineCount << ". " << line << endl;
-            lineCount++;
-        }
-    }
-
-    file.close();
-}
-
-/**
- * Description: Function that loans (borrows) a book for the user
- *
- * @param b Book being loaned
- *
- * @return Status of borrowed book (success or error)
- */
-string Book::borrowBook (int selection) {
+string Book::borrowBook(int selection, int account) {
     ifstream file(fileReference.BOOKS_FILE);
     ofstream tempFile(fileReference.TEMP_FILE);
 
@@ -73,36 +41,59 @@ string Book::borrowBook (int selection) {
     }
 
     string line;
+    string bookInfo = ""; // Variable to store the specific book details
     int currentLine = 1;
-    bool found = false;
+    bool bookFound = false;
 
+    // 1. Update Books File and Extract Info
     while (getline(file, line)) {
         if (currentLine == selection) {
-            // Check if line contains AVAILABLE before replacing
             size_t pos = line.find(" - AVAILABLE");
             if (pos != string::npos) {
-                // Remove AVAILABLE and add BORROWED
-                line.replace(pos, 12, " - BORROWED");
-                found = true;
+                // Store the book info (everything before " - AVAILABLE")
+                bookInfo = line.substr(0, pos);
+
+                line.replace(pos, 12, " - UNAVAILABLE");
+                bookFound = true;
             }
         }
         tempFile << line << endl;
         currentLine++;
     }
-
     file.close();
     tempFile.close();
 
-    // Replace original file with the updated temp file
+    if (!bookFound) {
+        remove(fileReference.TEMP_FILE.c_str());
+        return "Error: Book selection invalid or already borrowed";
+    }
+
     remove(fileReference.BOOKS_FILE.c_str());
     rename(fileReference.TEMP_FILE.c_str(), fileReference.BOOKS_FILE.c_str());
 
-    if (found) {
-        return "Book status updated to BORROWED";
+    // 2. Update Account File (Append book info string)
+    ifstream accFile(fileReference.ACCOUNTS_FILE);
+    ofstream accTemp(fileReference.TEMP_FILE);
+
+    if (!accFile || !accTemp) return "Error: Could not open accounts file";
+
+    currentLine = 1;
+    while (getline(accFile, line)) {
+        if (currentLine == account) {
+            // Append the actual book string instead of the selection number
+            line += " | Borrowed: " + bookInfo;
+        }
+        accTemp << line << endl;
+        currentLine++;
     }
-    else {
-        return "Error: Book selection invalid or already borrowed";
-    }
+
+    accFile.close();
+    accTemp.close();
+
+    remove(fileReference.ACCOUNTS_FILE.c_str());
+    rename(fileReference.TEMP_FILE.c_str(), fileReference.ACCOUNTS_FILE.c_str());
+
+    return "Book borrowed successfully.";
 }
 
 /**

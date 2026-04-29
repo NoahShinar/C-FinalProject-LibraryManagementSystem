@@ -31,6 +31,7 @@ class Magazine {
 
         string addMagazine(string title, string author, string classification);
         string removeMagazine(string title);
+        string borrowMagazine(int selection, int account);
 };
 
 

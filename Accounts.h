@@ -15,20 +15,25 @@
 #include <string>
 #include <iomanip>
 
+#include "FileHandler.h"
 #include "AccountTypeEnum.h"
 
 using namespace std;
+
+class FileHandler;
 
 class Accounts {
     private:
         string accountName;
         AccountTypeEnum type;
+        FileHandler fileReference;
 
     public:
         string borrowedBooks();
         string borrowedMagazines();
         int maxBorrowTime(int inputType);
         string ReviewAccount();
+        void displayAccounts();
 };
 
 
