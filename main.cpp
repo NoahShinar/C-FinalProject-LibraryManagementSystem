@@ -88,7 +88,7 @@ int main() {
         cout << "4. remove book or magazine from the library (staff and facility only)" << endl; // Done
         cout << "5. borrow book or magazine" << endl; // Done
         cout << "6. return book or magazine" << endl; // Done
-        cout << "7. view account" << endl; // display account info: name, type, borrowed books/magazines, due dates
+        cout << "7. view account" << endl; // Done
         cout << "8. request extension" << endl; // extend due date to corrisponding account type
         cout << "9. exit program" << endl; // Done
 
