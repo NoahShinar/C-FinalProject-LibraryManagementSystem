@@ -83,8 +83,8 @@ int main() {
         cout << endl;
         cout << "1. add new account" << endl; // Done
         cout << "2. remove account" << endl; // Done
-        cout << "3. add book or magazine to the library (staff and facility only)" << endl; // Done
-        cout << "4. remove book or magazine from the library (staff and facility only)" << endl; // Done
+        cout << "3. add book or magazine to the library (staff and faculty only)" << endl; // Done
+        cout << "4. remove book or magazine from the library (staff and faculty only)" << endl; // Done
         cout << "5. borrow book or magazine" << endl; // Done
         cout << "6. return book or magazine" << endl; // Done
         cout << "7. view account" << endl; // Done
