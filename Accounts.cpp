@@ -61,26 +61,28 @@ int Accounts::maxBorrowTime(int inputType) {
  *
  * @return account type, borrowed books, and magazines
  */
-string Accounts::ReviewAccount() {
-    string accountInfo = "Account Type: ";
+string Accounts::ReviewAccount(int accountNum) {
+    int lineCount = 1;
+    string line;
+    ifstream file(fileReference.ACCOUNTS_FILE);
 
-    if (type == AccountTypeEnum::STUDENT) {
-        accountInfo += "Student";
-    }
-    else if (type == AccountTypeEnum::FACULTY) {
-        accountInfo += "Faculty";
-    }
-    else if (type == AccountTypeEnum::STAFF) {
-        accountInfo += "Staff";
-    }
-    else {
-        accountInfo += "Unknown";
+    if (!file) {
+        cerr << "Error opening input file" << endl;
+        exit(EXIT_FAILURE);
     }
 
-    accountInfo += "\nBooks: " + borrowedBooks();
-    accountInfo += "\nMagazines: " + borrowedMagazines();
+    while (getline(file, line)) {
+        if (!line.empty()) {
+            if (lineCount == accountNum) {
+                file.close();
+                return line;
+            }
+            lineCount++;
+        }
+    }
 
-    return accountInfo;
+    file.close();
+    return "Account not found.";
 }
 
 /**

@@ -77,3 +77,74 @@ void Library::displayMagazines() {
 
     file.close();
 }
+
+/**
+ * Description: Function that returns a book or magazine from being loaned
+ *
+ * @param account account to remove borrowed book from
+ * @param title Book or magazine being returned
+ *
+ * @return Returns late message + fine or success message for no fine
+ */
+string Library::returnBookOrMagazine(string title, int account) {
+    string sourceFile = "";
+    string fullInfo = "";
+    bool found = false;
+
+    // 1. Determine if it's in Books or Magazines
+    string files[] = {fileReference.BOOKS_FILE, fileReference.MAGAZINES_FILE};
+    for (const string& currentFile : files) {
+        ifstream file(currentFile);
+        ofstream tempFile(fileReference.TEMP_FILE);
+        string line;
+
+        while (getline(file, line)) {
+            if (!found && line.find(title) != string::npos && line.find(" - UNAVAILABLE") != string::npos) {
+                fullInfo = line.substr(0, line.find(" - UNAVAILABLE"));
+                size_t pos = line.find(" - UNAVAILABLE");
+                line.replace(pos, 14, " - AVAILABLE");
+                found = true;
+                sourceFile = currentFile;
+            }
+            tempFile << line << endl;
+        }
+        file.close();
+        tempFile.close();
+
+        if (found) {
+            remove(currentFile.c_str());
+            rename(fileReference.TEMP_FILE.c_str(), currentFile.c_str());
+            break;
+        }
+        else {
+            remove(fileReference.TEMP_FILE.c_str());
+        }
+    }
+
+    if (!found) return "Error: Item not found or already returned.";
+
+    // 2. Update Account File
+    ifstream accFile(fileReference.ACCOUNTS_FILE);
+    ofstream accTemp(fileReference.TEMP_FILE);
+    if (!accFile || !accTemp) return "Error: Could not open accounts file";
+
+    string line;
+    string target = " | Borrowed: " + fullInfo;
+    int currentLine = 1;
+
+    while (getline(accFile, line)) {
+        if (currentLine == account) {
+            size_t pos = line.find(target);
+            if (pos != string::npos) line.erase(pos, target.length());
+        }
+        accTemp << line << endl;
+        currentLine++;
+    }
+
+    accFile.close();
+    accTemp.close();
+    remove(fileReference.ACCOUNTS_FILE.c_str());
+    rename(fileReference.TEMP_FILE.c_str(), fileReference.ACCOUNTS_FILE.c_str());
+
+    return "Item returned successfully.";
+}

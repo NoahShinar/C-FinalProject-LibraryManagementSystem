@@ -32,7 +32,7 @@ class Accounts {
         string borrowedBooks();
         string borrowedMagazines();
         int maxBorrowTime(int inputType);
-        string ReviewAccount();
+        string ReviewAccount(int accountNum);
         void displayAccounts();
 };
 

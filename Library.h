@@ -21,6 +21,7 @@ class Library {
     public:
         void displayMagazines();
         void displayBooks();
+        string returnBookOrMagazine(string title, int account);
 };
 
 

@@ -1,4 +1,4 @@
-a STUDENT | Borrowed: we - dsad - dsfa | Borrowed: c - h - a | Borrowed: fsef - er - sfsf
+a STUDENT
 b STUDENT
 afas STAFF
 dcs STUDENT

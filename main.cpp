@@ -56,8 +56,8 @@ int main() {
     FileHandler createAccount, removeAccount;
     Book addBook, removeBook, borrowBook;
     Magazine addMagazine, removeMagazine, borrowMagazine;
-    Accounts displayAccounts;
-    Library printBooks, printMagazines;
+    Accounts displayAccounts, reviewAccount;
+    Library printBooks, printMagazines, returnBookOrMagazine;
 
     bool validName = false;
 
@@ -77,6 +77,7 @@ int main() {
     string addMagazineTitle = "";
     string addMagazineAuthor = "";
     string addMagazineClassification = "";
+    string titleToReturn = "";
 
     while (choice != 9) {
 
@@ -86,7 +87,7 @@ int main() {
         cout << "3. add book or magazine to the library (staff and facility only)" << endl; // Done
         cout << "4. remove book or magazine from the library (staff and facility only)" << endl; // Done
         cout << "5. borrow book or magazine" << endl; // Done
-        cout << "6. return book or magazine" << endl; // display books/magazines in account, set book/magazine status to available in Book.txt/Magazine.txt, remove from account
+        cout << "6. return book or magazine" << endl; // Done
         cout << "7. view account" << endl; // display account info: name, type, borrowed books/magazines, due dates
         cout << "8. request extension" << endl; // extend due date to corrisponding account type
         cout << "9. exit program" << endl; // Done
@@ -258,20 +259,17 @@ int main() {
                 break;
 
             case 6:
-                cout << "1. Return book 2. Return magazine" << endl;
-                cin >> itemChoiceReturn;
+                cout << "Select an account: ";
+                displayAccounts.displayAccounts();
+                cin >> accountNum;
 
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-                if (itemChoiceReturn == 1) {
+                cout << "Select book/magazine title you want to return: " << endl;
+                cout << reviewAccount.ReviewAccount(accountNum) << endl;
+                getline(cin, titleToReturn);
+                cout << returnBookOrMagazine.returnBookOrMagazine(titleToReturn, accountNum);
 
-                }
-                else if (itemChoiceReturn == 2) {
-
-                }
-                else {
-                    cout << "Invalid choice" << endl;
-                }
                 break;
 
             case 7:
