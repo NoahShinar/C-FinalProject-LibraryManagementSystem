@@ -13,7 +13,7 @@ https://www.loc.gov/catdir/cpso/lcco/
 https://en.wikipedia.org/wiki/Library_of_Congress_Classification
 
 The Library system needs to:
-• Manage lending and of books and magazines
+• Manage lending of books and magazines
 • Manage returns of books and magazines
 • Review and display Members account and List borrowed books
 • List borrowed magazines
@@ -64,7 +64,6 @@ int main() {
     int choice = 0;
     int itemChoiceAdd = 0;
     int itemChoiceBorrow = 0;
-    int itemChoiceReturn = 0;
     int itemChoiceRemove = 0;
     int typeChoice = 0;
     int borrowNum = 0;
