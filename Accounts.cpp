@@ -59,6 +59,8 @@ int Accounts::maxBorrowTime(int inputType) {
 /**
  * Function to review account info
  *
+ * @param accountNum selected account to review
+ *
  * @return account type, borrowed books, and magazines
  */
 string Accounts::ReviewAccount(int accountNum) {
