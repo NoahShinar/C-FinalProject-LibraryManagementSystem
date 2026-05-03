@@ -283,7 +283,13 @@ int main() {
                 break;
 
             case 8:
-                // request extension
+                cout << "Select an account: ";
+
+                displayAccounts.displayAccounts();
+                cin >> accountNum;
+
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << reviewAccount.ReviewAccount(accountNum) << endl;
                 break;
 
             case 9:

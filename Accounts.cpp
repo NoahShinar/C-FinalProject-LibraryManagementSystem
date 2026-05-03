@@ -113,3 +113,48 @@ void Accounts::displayAccounts() {
 
     file.close();
 }
+
+/**
+ *Function that requests extension
+ *
+ *return message
+ */
+
+string Accounts::requestExtension(int accountNum)
+{
+    ifstream file(fileReference.ACCOUNTS_FILE);
+    ofstream temp("temp.txt");
+
+    if (!file || !temp)
+    {
+        return "Error opening file.";
+    }
+
+    string line;
+    int lineCount = 1;
+    bool found = false;
+
+    while (getline(file, line))
+    {
+        if (!line.empty())
+        {
+            if (lineCount == accountNum)
+            {
+                line += " --> Extension +10 days";
+                found = true;
+            }
+            temp << line << endl;
+            lineCount++;
+        }
+    }
+    file.close();
+    temp.close();
+
+    remove(fileReference.ACCOUNTS_FILE.c_str());
+    rename("temp.txt", fileReference.ACCOUNTS_FILE.c_str());
+
+    if (found)
+        return "Extension successful";
+    else
+        return "Extension failed, account not found";
+}
