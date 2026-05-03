@@ -30,7 +30,7 @@ string FileHandler::enumToString(AccountTypeEnum type) {
         case AccountTypeEnum::STUDENT:
             return "STUDENT";
         case AccountTypeEnum::FACULTY:
-            return "FACILITY";
+            return "FACULTY";
         case AccountTypeEnum::STAFF:
             return "STAFF";
         default:
