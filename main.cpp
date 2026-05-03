@@ -77,6 +77,7 @@ int main() {
     string addMagazineAuthor = "";
     string addMagazineClassification = "";
     string titleToReturn = "";
+    string titleToExtend = "";
 
     while (choice != 9) {
 
@@ -289,7 +290,12 @@ int main() {
                 cin >> accountNum;
 
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << reviewAccount.requestExtension(accountNum) << endl;
+
+                cout << "Enter book/magazine to extend: ";
+                getline(cin, titleToExtend);
+                cout << reviewAccount.requestExtension(titleToExtend, accountNum) << endl;
+
+                cout << returnBookOrMagazine.extendItem(titleToExtend, accountNum) << endl;
                 break;
 
             case 9:

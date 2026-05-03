@@ -22,6 +22,7 @@ class Library {
         void displayMagazines();
         void displayBooks();
         string returnBookOrMagazine(string title, int account);
+        string extendItem(string title, int account);
 };
 
 

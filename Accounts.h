@@ -34,7 +34,7 @@ class Accounts {
         int maxBorrowTime(int inputType);
         string ReviewAccount(int accountNum);
         void displayAccounts();
-        string requestExtension(int accountNum);
+        string requestExtension(string title, int accountNum);
         int getAccountLine(string name);
 };
 

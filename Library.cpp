@@ -148,3 +148,33 @@ string Library::returnBookOrMagazine(string title, int account) {
 
     return "Item returned successfully.";
 }
+
+string Library::extendItem(string title, int account)
+{
+    ifstream file(fileReference.ACCOUNTS_FILE);
+    ofstream temp(fileReference.TEMP_FILE);
+
+    if (!file || !temp) {
+        return "Error opening file.";
+    }
+
+        string line;
+        bool found = false;
+
+        while (getline(file, line))
+        {
+            if (line.find(title) != string::npos && line.find("Unavailable") != string::npos)
+            {
+                line += " --> extended +10 days";
+                found = true;
+            }
+            temp << line << endl;
+        }
+        file.close();
+        temp.close();
+
+        remove(fileReference.ACCOUNTS_FILE.c_str());
+        rename(fileReference.TEMP_FILE.c_str(), fileReference.ACCOUNTS_FILE.c_str());
+
+        return found ? "Extension applied to item." : "Item not found.";
+    }

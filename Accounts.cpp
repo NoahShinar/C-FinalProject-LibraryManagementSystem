@@ -119,7 +119,7 @@ void Accounts::displayAccounts() {
  *return message
  */
 
-string Accounts::requestExtension(int accountNum)
+string Accounts::requestExtension(string title, int accountNum)
 {
     ifstream file(fileReference.ACCOUNTS_FILE);
     ofstream temp(fileReference.TEMP_FILE);
@@ -135,7 +135,7 @@ string Accounts::requestExtension(int accountNum)
 
     while (getline(file, line))
     {
-        if (lineCount == accountNum)
+        if (line.find("Borrowed:") != string::npos && line.find(title) != string::npos)
         {
             line += " --> Extension +10 days";
             found = true;
