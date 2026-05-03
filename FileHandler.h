@@ -1,5 +1,5 @@
 //
-// Coded by noahs on 4/1/26.
+// Coded by noahs on 4/1/26. Edited by Kami I. on 5/03/26.
 //
 
 /**
@@ -25,10 +25,10 @@ class FileHandler {
     friend class Accounts;
 
     private:
-        const string ACCOUNTS_FILE = "/home/noahs/CLionProjects/FinalProject/RegisteredAccounts.txt";
-        const string BOOKS_FILE = "/home/noahs/CLionProjects/FinalProject/Books.txt";
-        const string MAGAZINES_FILE = "/home/noahs/CLionProjects/FinalProject/Magazines.txt";
-        const string TEMP_FILE = "/home/noahs/CLionProjects/FinalProject/tempFile.txt";
+        const string ACCOUNTS_FILE = "RegisteredAccounts.txt";
+        const string BOOKS_FILE = "Books.txt";
+        const string MAGAZINES_FILE = "Magazines.txt";
+        const string TEMP_FILE = "tempFile.txt";
 
     public:
         string enumToString(AccountTypeEnum type);
