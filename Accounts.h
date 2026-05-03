@@ -35,6 +35,7 @@ class Accounts {
         string ReviewAccount(int accountNum);
         void displayAccounts();
         string requestExtension(int accountNum);
+        int getAccountLine(string name);
 };
 
 

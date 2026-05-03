@@ -69,8 +69,7 @@ string Accounts::ReviewAccount(int accountNum) {
     ifstream file(fileReference.ACCOUNTS_FILE);
 
     if (!file) {
-        cerr << "Error opening input file" << endl;
-        exit(EXIT_FAILURE);
+        return "Error opening input file.";
     }
 
     while (getline(file, line)) {
@@ -157,4 +156,22 @@ string Accounts::requestExtension(int accountNum)
         return "Extension successful";
     else
         return "Extension failed, account not found";
+}
+
+int Accounts::getAccountLine(string name)
+{
+    ifstream file(fileReference.ACCOUNTS_FILE);
+
+    string line;
+    int lineCount = 1;
+
+    while (getline(file, line))
+    {
+        if (line.find(name) == 0)
+        {
+            return lineCount;
+        }
+        lineCount++;
+    }
+    return -1;
 }

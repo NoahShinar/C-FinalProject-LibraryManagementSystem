@@ -289,7 +289,7 @@ int main() {
                 cin >> accountNum;
 
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << reviewAccount.ReviewAccount(accountNum) << endl;
+                cout << reviewAccount.requestExtension(accountNum) << endl;
                 break;
 
             case 9:
