@@ -25,11 +25,13 @@ class FileHandler {
     friend class Accounts;
 
     private:
+        // Kami's directories (uncomment and comment as needed)
         // const string ACCOUNTS_FILE = "/Users/kamiiwanski/home/RegisteredAccounts.txt";
         // const string BOOKS_FILE = "/Users/kamiiwanski/home/FinalProject/Books.txt";
         // const string MAGAZINES_FILE = "/Users/kamiiwanski/home/Magazines.txt";
         // const string TEMP_FILE = "/Users/kamiiwanski/home/tempFile.txt";
 
+        // Noah's directories (uncomment and comment as needed)
         const string ACCOUNTS_FILE = "/home/noahs/CLionProjects/FinalProject/RegisteredAccounts.txt";
         const string BOOKS_FILE = "/home/noahs/CLionProjects/FinalProject/Books.txt";
         const string MAGAZINES_FILE = "/home/noahs/CLionProjects/FinalProject/Magazines.txt";

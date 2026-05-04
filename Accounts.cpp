@@ -145,7 +145,10 @@ void Accounts::displayAccounts() {
 /**
  *Function that requests extension
  *
- *return message
+ *@param title gets title of book
+ *@param gets account number
+ *
+ *@return extension to borrow time
  */
 
 string Accounts::requestExtension(string title, int accountNum)
@@ -189,6 +192,13 @@ string Accounts::requestExtension(string title, int accountNum)
     return "Extension applied successfully.";
 }
 
+/**
+ * Helper function that gets account line
+ *
+ * @param name account name
+ *
+ * @return number of account
+ */
 int Accounts::getAccountLine(string name)
 {
     ifstream file(fileReference.ACCOUNTS_FILE);

@@ -26,6 +26,8 @@ using namespace std;
 /**
  * Description: Function that loans a book to the user
  *
+ * @author Noah Shinar
+ *
  * @param account account to add borrowed book to
  * @param selection Book being loaned
  *
@@ -101,6 +103,8 @@ string Book::borrowBook(int selection, int account) {
 /**
  * Description: Function that calculates due date
  *
+ * @author Kami I
+ *
  * @param b Book being loaned
  *
  * @param day Day book is due to be returned
@@ -133,6 +137,8 @@ void Book::setDueDate (Book &b, int day, int month, int year, string accountType
 /**
  * Description: Function that extends the due date on a loaned book
  *
+ * @author Kami I
+ *
  * @param b Book with the due date that is being modified
  *
  * @return Successful extension message
@@ -144,6 +150,8 @@ void Book::extendDueDate (Book &b) {
 
 /**
  * Function that adds a book to the library
+ *
+ * @author Noah Shinar
  *
  * @param title title of book
  * @param author author of book
@@ -168,6 +176,8 @@ string Book::addBook(string title, string author, string classification) {
 
 /**
  * Function that removes a book from the library
+ *
+ * @author Noah Shinar
  *
  * @param title title of book
  *

@@ -27,6 +27,7 @@ using namespace std;
 /**
  * Description: Magazine constructor
  *
+ * @author Kami I
  */
 Magazine::Magazine() {
     title = "";
@@ -42,6 +43,8 @@ Magazine::Magazine() {
 
 /**
  * Description: adds magazines to Magazine.txt
+ *
+ * @author Noah Shinar
  *
  * @param title title of magazine
  * @param author author of magazine
@@ -65,6 +68,8 @@ string Magazine::addMagazine(string title, string author, string classification)
 
 /**
  * Function that removes a magazine from the library
+ *
+ * @author Noah Shinar
  *
  * @param title title of magazine
  *
@@ -109,6 +114,8 @@ string Magazine::removeMagazine(string title) {
 
 /**
  * Description: Function that loans a magazine to the user
+ *
+ * @author Noah Shinar
  *
  * @param account account to add borrowed magazine to
  * @param selection magazine being loaned

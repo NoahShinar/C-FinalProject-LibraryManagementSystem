@@ -28,7 +28,7 @@ The Library system needs to:
 * main.cpp:
  * Program to manage a library system
  *
- *  @authors Noah Shinar and Kami Iwanski
+ * @authors Noah Shinar and Kami Iwanski
  */
 
 #include <iostream>
@@ -37,7 +37,6 @@ The Library system needs to:
 #include <iomanip>
 #include <limits>
 #include <istream>
-#include <ctime>
 
 #include "Book.h"
 #include "Magazine.h"
@@ -69,6 +68,7 @@ int main() {
     int typeChoice = 0;
     int borrowNum = 0;
     int accountNum = 0;
+    int daysBorrowed = 0;
 
     string name = "";
     string addBookTitle = "";
@@ -85,12 +85,12 @@ int main() {
         cout << endl;
         cout << "1. add new account" << endl; // Done
         cout << "2. remove account" << endl; // Done
-        cout << "3. add book or magazine to the library (staff and faculty only)" << endl; // Done
-        cout << "4. remove book or magazine from the library (staff and faculty only)" << endl; // Done
+        cout << "3. add book or magazine to the library" << endl; // Done
+        cout << "4. remove book or magazine from the library" << endl; // Done
         cout << "5. borrow book or magazine" << endl; // Done
         cout << "6. return book or magazine" << endl; // Done
         cout << "7. view account" << endl; // Done
-        cout << "8. request extension" << endl; // extend due date to corrisponding account type
+        cout << "8. request extension" << endl; // Done (somewhat)
         cout << "9. exit program" << endl; // Done
 
         cout << "choice: ";
@@ -152,6 +152,7 @@ int main() {
 
                 while (!validName) {
 
+                    displayAccounts.displayAccounts();
                     cout << "Enter account name (no spaces): ";
                     getline(cin, name);
 
@@ -210,12 +211,16 @@ int main() {
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
                 if (itemChoiceRemove == 1) {
+
+                    printBooks.displayBooks();
                     cout << "Title: ";
                     getline(cin, addBookTitle);
 
                     cout << removeBook.removeBook(addBookTitle);
                 }
                 else if (itemChoiceRemove == 2) {
+
+                    printMagazines.displayMagazines();
                     cout << "Title: ";
                     getline(cin, addMagazineTitle);
 
@@ -259,7 +264,7 @@ int main() {
                 }
                 break;
 
-            case 6: {
+            case 6:
                 cout << "Select an account: ";
                 displayAccounts.displayAccounts();
                 cin >> accountNum;
@@ -273,14 +278,12 @@ int main() {
                 cout << "Select book or magazine to return: " << endl;
                 getline(cin, titleToReturn);
 
-                int daysBorrowed;
                 cout << "Enter days borrowed: ";
                 cin >> daysBorrowed;
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
                 cout << returnBookOrMagazine.returnBookOrMagazine(titleToReturn, accountNum) << endl;
                 break;
-            }
 
             case 7:
                 cout << "Select an account: ";

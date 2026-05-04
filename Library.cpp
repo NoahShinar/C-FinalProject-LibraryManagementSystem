@@ -20,6 +20,9 @@ using namespace std;
 /**
  * Description: Function to display books
  *
+ * @author Noah Shinar
+ * @author Kami I
+ *
  * @return everything in Book.txt
  */
 void Library::displayBooks() {
@@ -53,6 +56,8 @@ void Library::displayBooks() {
 /**
  * Description: Function to display the magazines
  *
+ * @author Noah Shinar
+ *
  * @return everything in Magaziens.txt
  */
 void Library::displayMagazines() {
@@ -80,6 +85,8 @@ void Library::displayMagazines() {
 
 /**
  * Description: Function that returns a book or magazine from being loaned
+ *
+ * @author Noah Shinar
  *
  * @param account account to remove borrowed book from
  * @param title Book or magazine being returned
@@ -149,6 +156,16 @@ string Library::returnBookOrMagazine(string title, int account) {
     return "Item returned successfully.";
 }
 
+/**
+ * Function that extends borrow time
+ *
+ * @author Kami I
+ *
+ * @param title book title
+ * @param account account name
+ *
+ * @return extention time to item
+ */
 string Library::extendItem(string title, int account)
 {
     ifstream file(fileReference.ACCOUNTS_FILE);

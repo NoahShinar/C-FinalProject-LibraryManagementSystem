@@ -22,6 +22,8 @@ using namespace std;
 /**
  * Function to convert enum type to string
  *
+ * @author Kami I
+ *
  * @param type enum types STUDENT, FACULTY, STAFF
  * @return AccountTypeEnum type as a string
  */
@@ -39,7 +41,9 @@ string FileHandler::enumToString(AccountTypeEnum type) {
 }
 
 /**
- * Function to check if account exists when trying to create a new account
+ * Helper function to check if account exists when trying to create a new account
+ *
+ * @author Noah Shinar
  *
  * @param name account name
  * @return boolean account exists = true or false
@@ -68,6 +72,8 @@ bool FileHandler::AccountExists(string name) {
 /**
  * Function to register an account into RegisteredAccounts.txt
  *
+ * @author Noah Shinar
+ *
  * @param name account name
  * @param type enum types STUDENT, FACULTY, STAFF
  * @return Account registered successfully or Error: Account already exists
@@ -92,6 +98,8 @@ string FileHandler::RegisterAccount(string name, AccountTypeEnum type) {
 
 /**
  * Function to remove an account from RegisteredAccounts.txt
+ *
+ * @author Noah Shinar
  *
  * @param name account name
  * @return Account successfully removed or Account not found
