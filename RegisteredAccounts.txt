@@ -1,2 +1,3 @@
-weeee FACULTY | Borrowed: 3 - f - e
-adasd STUDENT | Borrowed: f - tst - es
+weeee FACULTY
+adasd STUDENT
+hewwo STUDENT | Borrowed: class - title - author --> Extension +10 days

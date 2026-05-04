@@ -1,2 +1,3 @@
-3 - f - e - UNAVAILABLE
-f - tst - es - UNAVAILABLE
+3 - f - e - AVAILABLE
+f - tst - es - AVAILABLE
+class - title - author - UNAVAILABLE
