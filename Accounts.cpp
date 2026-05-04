@@ -124,33 +124,39 @@ string Accounts::requestExtension(string title, int accountNum)
     ifstream file(fileReference.ACCOUNTS_FILE);
     ofstream temp(fileReference.TEMP_FILE);
 
-    if (!file || !temp)
-    {
-        return "Error opening file.";
-    }
+    if (!file || !temp) return "Error opening file.";
 
     string line;
-    int lineCount = 1;
+    int currentLine = 1; // Track which account we are looking at
     bool found = false;
 
     while (getline(file, line))
     {
-        if (line.find("Borrowed:") != string::npos && line.find(title) != string::npos)
+        // Only attempt extension if the line number matches the selected accountNum
+        if (currentLine == accountNum)
         {
-            line += " --> Extension +10 days";
-            found = true;
+            if (line.find("Borrowed: ") != string::npos && line.find(title) != string::npos)
+            {
+                line += " --> Extension +10 days";
+                found = true;
+            }
         }
-            temp << line << endl;
-            lineCount++;
-        }
+        temp << line << endl;
+        currentLine++;
+    }
 
     file.close();
     temp.close();
 
+    if (!found) {
+        remove(fileReference.TEMP_FILE.c_str());
+        return "Item not found for this account.";
+    }
+
     remove(fileReference.ACCOUNTS_FILE.c_str());
     rename(fileReference.TEMP_FILE.c_str(), fileReference.ACCOUNTS_FILE.c_str());
 
-   return found ? "Extension applied successfully." : "Account not found";
+    return "Extension applied successfully.";
 }
 
 int Accounts::getAccountLine(string name)

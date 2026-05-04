@@ -75,7 +75,9 @@ string Book::borrowBook(int selection, int account) {
     ifstream accFile(fileReference.ACCOUNTS_FILE);
     ofstream accTemp(fileReference.TEMP_FILE);
 
-    if (!accFile || !accTemp) return "Error: Could not open accounts file";
+    if (!accFile || !accTemp) {
+        return "Error: Could not open accounts file";
+    }
 
     currentLine = 1;
     while (getline(accFile, line)) {

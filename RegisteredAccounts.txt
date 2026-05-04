@@ -1,1 +1,2 @@
-test STUDENT | Borrowed: c - a - b
+weeee FACULTY | Borrowed: 3 - f - e
+adasd STUDENT | Borrowed: f - tst - es

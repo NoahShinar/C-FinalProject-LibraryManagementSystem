@@ -163,8 +163,7 @@ string Library::extendItem(string title, int account)
 
         while (getline(file, line))
         {
-            if (line.find(title) != string::npos && line.find("Unavailable") != string::npos)
-            {
+            if (!found && line.find(title) != string::npos && line.find("Unavailable") != string::npos) {
                 line += " --> extended +10 days";
                 found = true;
             }
@@ -173,8 +172,13 @@ string Library::extendItem(string title, int account)
         file.close();
         temp.close();
 
+        if (!found) {
+            remove(fileReference.TEMP_FILE.c_str());
+            return "Item not found.";
+        }
+
         remove(fileReference.ACCOUNTS_FILE.c_str());
         rename(fileReference.TEMP_FILE.c_str(), fileReference.ACCOUNTS_FILE.c_str());
 
-        return found ? "Extension applied to item." : "Item not found.";
+        return "Extension applied to item.";
     }

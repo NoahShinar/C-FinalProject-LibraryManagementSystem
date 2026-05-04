@@ -285,7 +285,6 @@ int main() {
 
             case 8:
                 cout << "Select an account: ";
-
                 displayAccounts.displayAccounts();
                 cin >> accountNum;
 
@@ -293,9 +292,9 @@ int main() {
 
                 cout << "Enter book/magazine to extend: ";
                 getline(cin, titleToExtend);
+
                 cout << reviewAccount.requestExtension(titleToExtend, accountNum) << endl;
 
-                cout << returnBookOrMagazine.extendItem(titleToExtend, accountNum) << endl;
                 break;
 
             case 9:
