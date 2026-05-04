@@ -61,7 +61,7 @@ int Accounts::maxBorrowTime() {
  *
  *returns the total fine amount
  */
-double Accounts::calculateAutomaticFine(long borrowTimestamp)
+double Accounts::calculateFine(long borrowTimestamp)
 {
     time_t currentTime = time(0);
     long secondsBorrowed = currentTime - borrowTimestamp;
@@ -97,7 +97,7 @@ string Accounts::ReviewAccount(int accountNum) {
             size_t tsPos = line.find("Timestamp: ");
             if (tsPos != string::npos) {
                 long ts = stol(line.substr(tsPos + 3));
-                double fine = calculateAutomaticFine(ts);
+                double fine = calculateFine(ts);
 
                 if (fine > 0)
                 {

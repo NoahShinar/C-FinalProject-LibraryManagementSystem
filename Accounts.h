@@ -37,7 +37,7 @@ class Accounts {
         void displayAccounts();
         string requestExtension(string title, int accountNum);
         int getAccountLine(string name);
-        double calculateAutomaticFine(long borrowTimestamp);
+        double calculateFine(long borrowTimestamp);
         void setAccountType(int typeInt);
 };
 
