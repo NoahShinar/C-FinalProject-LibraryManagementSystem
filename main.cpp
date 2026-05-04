@@ -25,7 +25,7 @@ The Library system needs to:
 
 
 /**
-* main.cpp:
+ * main.cpp:
  * Program to manage a library system
  *
  * @authors Noah Shinar and Kami Iwanski
