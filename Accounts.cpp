@@ -13,6 +13,7 @@
 #include "FileHandler.h"
 #include <iostream>
 #include <fstream>
+#include <ctime>
 
 using namespace std;
 
@@ -60,15 +61,20 @@ int Accounts::maxBorrowTime() {
  *
  *returns the total fine amount
  */
-double Accounts::calculateFine(int daysBorrowed)
+double Accounts::calculateAutomaticFine(long borrowTimestamp)
 {
+    time_t currentTime = time(0);
+    long secondsBorrowed = currentTime - borrowTimestamp;
+
+    int daysBorrowed = secondsBorrowed / 86400;
+
     int limit = maxBorrowTime();
 
     if (daysBorrowed > limit)
     {
         return (daysBorrowed - limit) * 1.75;
     }
-return 0.0;
+    return 0.0;
 }
 /**
  * Function to review account info
@@ -85,18 +91,29 @@ string Accounts::ReviewAccount(int accountNum) {
     if (!file) return "Error opening input file.";
 
     while (getline(file, line)) {
-        if (!line.empty()) {
-            if (lineCount == accountNum) {
-                file.close();
-                return line;
-            }
-            lineCount++;
-        }
-    }
+        if (!line.empty() && lineCount == accountNum) {
+            file.close();
 
+            size_t tsPos = line.find("Timestamp: ");
+            if (tsPos != string::npos) {
+                long ts = stol(line.substr(tsPos + 3));
+                double fine = calculateAutomaticFine(ts);
+
+                if (fine > 0)
+                {
+                    return line + " - Overdue Fine: $" + to_string(fine).substr(0, 4);
+                }
+            }
+            return line + " - No current fines";
+        }
+        lineCount++;
+    }
     file.close();
     return "Account not found.";
 }
+
+
+
 
 /**
  * Function to display all registered accounts

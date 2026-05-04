@@ -14,6 +14,7 @@
 
 #include <string>
 #include <iomanip>
+#include <ctime>
 
 #include "FileHandler.h"
 #include "AccountTypeEnum.h"
@@ -36,7 +37,8 @@ class Accounts {
         void displayAccounts();
         string requestExtension(string title, int accountNum);
         int getAccountLine(string name);
-        double calculateFine(int daysBorrowed);
+        double calculateAutomaticFine(long borrowTimestamp);
+        void setAccountType(int typeInt);
 };
 
 

@@ -37,6 +37,7 @@ The Library system needs to:
 #include <iomanip>
 #include <limits>
 #include <istream>
+#include <ctime>
 
 #include "Book.h"
 #include "Magazine.h"
