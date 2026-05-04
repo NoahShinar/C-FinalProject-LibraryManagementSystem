@@ -53,11 +53,11 @@ using namespace std;
 
 int main() {
 
-    FileHandler createAccount, removeAccount;
-    Book addBook, removeBook, borrowBook;
-    Magazine addMagazine, removeMagazine, borrowMagazine;
-    Accounts displayAccounts, reviewAccount;
-    Library printBooks, printMagazines, returnBookOrMagazine;
+    FileHandler fileHandler;
+    Book book;
+    Magazine magazine;
+    Accounts accounts;
+    Library library;
 
     bool validName = false;
 
@@ -82,16 +82,7 @@ int main() {
 
     while (choice != 9) {
 
-        cout << endl;
-        cout << "1. add new account" << endl; // Done
-        cout << "2. remove account" << endl; // Done
-        cout << "3. add book or magazine to the library" << endl; // Done
-        cout << "4. remove book or magazine from the library" << endl; // Done
-        cout << "5. borrow book or magazine" << endl; // Done
-        cout << "6. return book or magazine" << endl; // Done
-        cout << "7. view account" << endl; // Done
-        cout << "8. request extension" << endl; // Done (somewhat)
-        cout << "9. exit program" << endl; // Done
+        library.printMenu();
 
         cout << "choice: ";
         cin >> choice;
@@ -112,7 +103,7 @@ int main() {
                     if (name.find(' ') != string::npos || name.empty()) {
                         cout << "Invalid name. Please do not use spaces." << endl;
                     }
-                    else if (createAccount.AccountExists(name)) {
+                    else if (fileHandler.AccountExists(name)) {
                         cout << "Account " << name << " already exists." << endl;
                     }
                     else {
@@ -131,7 +122,7 @@ int main() {
                     }
                 }
 
-                cout << createAccount.RegisterAccount(name, static_cast<AccountTypeEnum>(typeChoice - 1));
+                cout << fileHandler.RegisterAccount(name, static_cast<AccountTypeEnum>(typeChoice - 1));
 
                 if (typeChoice == 1) {
                     cout << endl << "Account Name: " << name << " Account Type: Student" << endl << endl;
@@ -152,7 +143,7 @@ int main() {
 
                 while (!validName) {
 
-                    displayAccounts.displayAccounts();
+                    accounts.displayAccounts();
                     cout << "Enter account name (no spaces): ";
                     getline(cin, name);
 
@@ -164,7 +155,7 @@ int main() {
                     }
                 }
 
-                cout << removeAccount.removeAccount(name);
+                cout << fileHandler.removeAccount(name);
 
                 break;
 
@@ -185,7 +176,7 @@ int main() {
                     cout << "Classification: ";
                     getline(cin, addBookClassification);
 
-                    cout << addBook.addBook(addBookTitle, addBookAuthor, addBookClassification) << endl;
+                    cout << book.addBook(addBookTitle, addBookAuthor, addBookClassification) << endl;
                 }
                 else if (itemChoiceAdd == 2) {
                     cout << "Title: ";
@@ -197,7 +188,7 @@ int main() {
                     cout << "Classification: ";
                     getline(cin, addMagazineClassification);
 
-                    cout << addMagazine.addMagazine(addMagazineTitle, addMagazineAuthor, addMagazineClassification) << endl;
+                    cout << magazine.addMagazine(addMagazineTitle, addMagazineAuthor, addMagazineClassification) << endl;
                 }
                 else {
                     cout << "Invalid choice" << endl;
@@ -212,19 +203,19 @@ int main() {
 
                 if (itemChoiceRemove == 1) {
 
-                    printBooks.displayBooks();
+                    library.displayBooks();
                     cout << "Title: ";
                     getline(cin, addBookTitle);
 
-                    cout << removeBook.removeBook(addBookTitle);
+                    cout << book.removeBook(addBookTitle);
                 }
                 else if (itemChoiceRemove == 2) {
 
-                    printMagazines.displayMagazines();
+                    library.displayMagazines();
                     cout << "Title: ";
                     getline(cin, addMagazineTitle);
 
-                    cout << removeMagazine.removeMagazine(addMagazineTitle);
+                    cout << magazine.removeMagazine(addMagazineTitle);
                 }
                 else {
                     cout << "Invalid choice" << endl;
@@ -233,7 +224,7 @@ int main() {
 
             case 5:
                 cout << "Select an account: ";
-                displayAccounts.displayAccounts();
+                accounts.displayAccounts();
                 cin >> accountNum;
 
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -244,20 +235,20 @@ int main() {
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
                 if (itemChoiceBorrow == 1) {
-                    printBooks.displayBooks();
+                    library.displayBooks();
 
                     cout << "Enter the number of the book you want to borrow: ";
                     cin >> borrowNum;
 
-                    borrowBook.borrowBook(borrowNum, accountNum);
+                    book.borrowBook(borrowNum, accountNum);
                 }
                 else if (itemChoiceBorrow == 2) {
-                    printMagazines.displayMagazines();
+                    library.displayMagazines();
 
                     cout << "Enter the number of the magazine you want to borrow: ";
                     cin >> borrowNum;
 
-                    borrowMagazine.borrowMagazine(borrowNum, accountNum);
+                    magazine.borrowMagazine(borrowNum, accountNum);
                 }
                 else {
                     cout << "Invalid choice" << endl;
@@ -266,13 +257,13 @@ int main() {
 
             case 6:
                 cout << "Select an account: ";
-                displayAccounts.displayAccounts();
+                accounts.displayAccounts();
                 cin >> accountNum;
 
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
                 cout << "--- Current Account Status ---" << endl;
-                cout << reviewAccount.ReviewAccount(accountNum) << endl;
+                cout << accounts.ReviewAccount(accountNum) << endl;
                 cout << "------------------" << endl;
 
                 cout << "Select book or magazine to return: " << endl;
@@ -282,23 +273,23 @@ int main() {
                 cin >> daysBorrowed;
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-                cout << returnBookOrMagazine.returnBookOrMagazine(titleToReturn, accountNum) << endl;
+                cout << library.returnBookOrMagazine(titleToReturn, accountNum) << endl;
                 break;
 
             case 7:
                 cout << "Select an account: ";
-                displayAccounts.displayAccounts();
+                accounts.displayAccounts();
                 cin >> accountNum;
 
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-                cout << reviewAccount.ReviewAccount(accountNum) << endl;
+                cout << accounts.ReviewAccount(accountNum) << endl;
 
                 break;
 
             case 8:
                 cout << "Select an account: ";
-                displayAccounts.displayAccounts();
+                accounts.displayAccounts();
                 cin >> accountNum;
 
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -306,7 +297,7 @@ int main() {
                 cout << "Enter book/magazine to extend: ";
                 getline(cin, titleToExtend);
 
-                cout << reviewAccount.requestExtension(titleToExtend, accountNum) << endl;
+                cout << accounts.requestExtension(titleToExtend, accountNum) << endl;
 
                 break;
 

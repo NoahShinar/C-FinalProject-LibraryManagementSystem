@@ -199,3 +199,23 @@ string Library::extendItem(string title, int account)
 
         return "Extension applied to item.";
     }
+
+/**
+ * Function that prints menu items
+ *
+ * @author Noah Shinar
+ *
+ * @return menu
+ */
+void Library::printMenu() {
+    cout << endl;
+    cout << "1. add new account" << endl; // Done
+    cout << "2. remove account" << endl; // Done
+    cout << "3. add book or magazine to the library" << endl; // Done
+    cout << "4. remove book or magazine from the library" << endl; // Done
+    cout << "5. borrow book or magazine" << endl; // Done
+    cout << "6. return book or magazine" << endl; // Done
+    cout << "7. view account" << endl; // Done
+    cout << "8. request extension" << endl; // Done (somewhat)
+    cout << "9. exit program" << endl; // Done
+}
