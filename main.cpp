@@ -258,19 +258,41 @@ int main() {
                 }
                 break;
 
-            case 6:
+            case 6: {
                 cout << "Select an account: ";
                 displayAccounts.displayAccounts();
                 cin >> accountNum;
 
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-                cout << "Select book/magazine title you want to return: " << endl;
+                cout << "Current Account Information: " << endl;
                 cout << reviewAccount.ReviewAccount(accountNum) << endl;
-                getline(cin, titleToReturn);
-                cout << returnBookOrMagazine.returnBookOrMagazine(titleToReturn, accountNum);
 
+                cout << "Select book or magazine to return: " << endl;
+                getline(cin, titleToReturn);
+
+                int daysBorrowed;
+                cout << "Enter days borrowed: ";
+                cin >> daysBorrowed;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+                double fine = reviewAccount.calculateFine(daysBorrowed);
+
+                if (fine > 0)
+                {
+                    cout << "-------------------------" << endl;
+                    cout << "Late return detected" << endl;
+                    cout << "Fine amount calculated: $" << fixed << setprecision(2) << fine << endl;
+                    cout << "-------------------------" << endl;
+                }
+                else
+                {
+                    cout << "Returned on time. No fine calculated." << endl;
+                }
+
+                cout << returnBookOrMagazine.returnBookOrMagazine(titleToReturn, accountNum) << endl;
                 break;
+            }
 
             case 7:
                 cout << "Select an account: ";

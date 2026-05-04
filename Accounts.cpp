@@ -37,25 +37,39 @@ string Accounts::borrowedMagazines() {
 /**
  * Function to set maximum borrow type for each account type and handle fines for late returns
  *
- * @param inputType account type
  * @return maximum amount of days each account has to borrow books and magazines and handle late fees
  */
-int Accounts::maxBorrowTime(int inputType) {
+int Accounts::maxBorrowTime() {
     // Students are allowed to borrow a maximum of 5 books at a time, while faculty and staff can borrow up to 10 books.
     // Handle fines of $1.75 per day on late books.
-    type = static_cast<AccountTypeEnum>(inputType);
 
-    if (type == AccountTypeEnum::STUDENT) {
+    if (type == AccountTypeEnum::STUDENT)
+    {
         return 30; //days loaned
     }
-    else if (type == AccountTypeEnum::FACULTY || type == AccountTypeEnum::STAFF) {
+    else if (type == AccountTypeEnum::FACULTY || type == AccountTypeEnum::STAFF)
+    {
         return 60; //days loaned
     }
     else {
         return 30; //default
     }
 }
+/**
+ *Function to calculate the fine
+ *
+ *returns the total fine amount
+ */
+double Accounts::calculateFine(int daysBorrowed)
+{
+    int limit = maxBorrowTime();
 
+    if (daysBorrowed > limit)
+    {
+        return (daysBorrowed - limit) * 1.75;
+    }
+return 0.0;
+}
 /**
  * Function to review account info
  *
@@ -68,9 +82,7 @@ string Accounts::ReviewAccount(int accountNum) {
     string line;
     ifstream file(fileReference.ACCOUNTS_FILE);
 
-    if (!file) {
-        return "Error opening input file.";
-    }
+    if (!file) return "Error opening input file.";
 
     while (getline(file, line)) {
         if (!line.empty()) {

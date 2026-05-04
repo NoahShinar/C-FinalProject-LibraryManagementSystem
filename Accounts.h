@@ -1,5 +1,5 @@
 //
-// Created by noahs on 3/24/26.
+// Created by noahs on 3/24/26. Updated by Kami I. on 05/03/26.
 //
 
 /**
@@ -31,11 +31,12 @@ class Accounts {
     public:
         string borrowedBooks();
         string borrowedMagazines();
-        int maxBorrowTime(int inputType);
+        int maxBorrowTime();
         string ReviewAccount(int accountNum);
         void displayAccounts();
         string requestExtension(string title, int accountNum);
         int getAccountLine(string name);
+        double calculateFine(int daysBorrowed);
 };
 
 
