@@ -23,7 +23,6 @@ class Library {
         void displayBooks();
         string returnBookOrMagazine(string title, int account);
         string extendItem(string title, int account);
-
         void printMenu();
 };
 
