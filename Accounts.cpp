@@ -161,6 +161,7 @@ string Accounts::requestExtension(string title, int accountNum)
     temp.close();
 
     if (!found) {
+        temp.close();
         remove(fileReference.TEMP_FILE.c_str());
         return "Item not found for this account.";
     }
