@@ -266,8 +266,9 @@ int main() {
 
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-                cout << "Current Account Information: " << endl;
+                cout << "--- Current Account Status ---" << endl;
                 cout << reviewAccount.ReviewAccount(accountNum) << endl;
+                cout << "------------------" << endl;
 
                 cout << "Select book or magazine to return: " << endl;
                 getline(cin, titleToReturn);
@@ -276,20 +277,6 @@ int main() {
                 cout << "Enter days borrowed: ";
                 cin >> daysBorrowed;
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-                double fine = reviewAccount.calculateFine(daysBorrowed);
-
-                if (fine > 0)
-                {
-                    cout << "-------------------------" << endl;
-                    cout << "Late return detected" << endl;
-                    cout << "Fine amount calculated: $" << fixed << setprecision(2) << fine << endl;
-                    cout << "-------------------------" << endl;
-                }
-                else
-                {
-                    cout << "Returned on time. No fine calculated." << endl;
-                }
 
                 cout << returnBookOrMagazine.returnBookOrMagazine(titleToReturn, accountNum) << endl;
                 break;
