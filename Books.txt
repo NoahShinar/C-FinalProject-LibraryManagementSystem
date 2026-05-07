@@ -2,6 +2,8 @@
 f - tst - es - UNAVAILABLE
 class - title - author - UNAVAILABLE
 no - book - txt - UNAVAILABLE
-u - a - h - UNAVAILABLE
-test - test - test - AVAILABLE
+test - test - test - UNAVAILABLE
 c - BOOK - b - UNAVAILABLE
+h - book1 - d - UNAVAILABLE
+g - book2 - d - UNAVAILABLE
+BDEMO - BDEMO - BDEMO - UNAVAILABLE

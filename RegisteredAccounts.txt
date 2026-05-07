@@ -1,3 +1,4 @@
-adasd STUDENT | Borrowed: f - tst - es | Duration: -12 days | LATE FINE: $22.75 | Borrowed: f - tst - es | Duration: -12 days | LATE FINE: $22.75 | Borrowed: class - title - author | Duration: -12 days | LATE FINE: $22.75 | Borrowed: no - book - txt | Duration: -12 days | LATE FINE: $22.75 | Borrowed: u - a - h | Duration: -4 days | LATE FINE: $8.75
-test STUDENT | Borrowed: c - BOOK - b | Duration: 25 days | Borrowed: no - mag - npoah | Duration: 27 days
-noah STUDENT | Borrowed: vs - a - b | Duration: -10 days | LATE FINE: $19.25
+adasd STUDENT | Borrowed: f - tst - es | Duration: -14760 days | LATE FINE: $25831.75 | Borrowed: f - tst - es | Duration: -14760 days | LATE FINE: $25831.75 | Borrowed: class - title - author | Duration: -14760 days | LATE FINE: $25831.75 | Borrowed: no - book - txt | Duration: -14760 days | LATE FINE: $25831.75 | Borrowed: u - a - h | Duration: -14752 days | LATE FINE: $25817.75
+test STUDENT | Borrowed: c - BOOK - b | Duration: -14723 days | LATE FINE: $25767.00 | Borrowed: no - mag - npoah | Duration: -14721 days | LATE FINE: $25763.50
+noah STUDENT | Borrowed: vs - a - b | Duration: -14758 days | LATE FINE: $25828.25
+DEMO STAFF | Borrowed: BDEMO - BDEMO - BDEMO | Duration: -3 days | LATE FINE: $7.00
