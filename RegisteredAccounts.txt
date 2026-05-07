@@ -1,4 +1,4 @@
-adasd STUDENT | Borrowed: f - tst - es | Duration: 30 days | Borrowed: f - tst - es | Duration: 30 days | Borrowed: class - title - author | Duration: 30 days | Borrowed: no - book - txt | Duration: 30 days | Borrowed: u - a - h | Duration: 30 days
+adasd STUDENT | Borrowed: f - tst - es | Duration: 27 days | Borrowed: f - tst - es | Duration: 27 days | Borrowed: class - title - author | Duration: 27 days | Borrowed: no - book - txt | Duration: 27 days | Borrowed: u - a - h | Duration: 27 days
 hewwo STUDENT
 test STUDENT
-noah STUDENT | Borrowed: vs - a - b | Duration: -1 days
+noah STUDENT | Borrowed: vs - a - b | Duration: 29 days 

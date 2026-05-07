@@ -82,6 +82,8 @@ int main() {
 
     while (choice != 9) {
 
+        accounts.updateDailyDurations();
+
         library.printMenu();
 
         cout << "choice: ";

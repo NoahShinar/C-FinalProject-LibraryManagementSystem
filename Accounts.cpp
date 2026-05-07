@@ -14,6 +14,9 @@
 #include <iostream>
 #include <fstream>
 #include <ctime>
+#include <cmath>
+#include <sstream>
+#include <iomanip>
 
 using namespace std;
 
@@ -83,40 +86,78 @@ bool Accounts::canBorrowMore(int accountNum) {
  * @returns updated borrow duration
  */
 void Accounts::updateDailyDurations() {
+
     ifstream file(fileReference.ACCOUNTS_FILE);
     ofstream temp(fileReference.TEMP_FILE);
 
+    if (!file.is_open() || !temp.is_open()) {
+        return;
+    }
+
     string line;
+
     while (getline(file, line)) {
-        size_t durPos = line.find("Duration: ");
-        if (durPos != string::npos) {
-            size_t endPos = line.find(" days", durPos);
-            int start = durPos + 10;
 
-            int days = stoi(line.substr(start, endPos - start));
+        size_t pos = 0;
+
+        while ((pos = line.find("Duration: ", pos)) != string::npos) {
+
+            size_t numStart = pos + 10;
+            size_t numEnd = line.find(" days", numStart);
+
+            if (numEnd == string::npos) {
+                break;
+            }
+
+            int days = stoi(line.substr(numStart, numEnd - numStart));
+
+            // decrement days
             days--;
-            line.replace(start, endPos - start, to_string(days));
 
-            if (days < 0) {
-                double fineAmount = abs(days) * 1.75;
-                string fineStr = " | Charges: $" + to_string(fineAmount).substr(0, 4);
+            // replace old number with new one
+            line.replace(numStart, numEnd - numStart, to_string(days));
 
-                size_t chargePos = line.find(" | Charges: $");
-                if (chargePos != string::npos) {
-                    line.replace(chargePos, line.length() - chargePos, fineStr);
+            // update numEnd after replacement
+            numEnd = line.find(" days", numStart);
+
+            // remove old late fine if it exists
+            size_t finePos = line.find(" | LATE FINE:", numEnd);
+
+            if (finePos != string::npos) {
+
+                size_t nextBorrowed = line.find(" | Borrowed:", finePos);
+
+                if (nextBorrowed != string::npos) {
+                    line.erase(finePos, nextBorrowed - finePos);
                 }
                 else {
-                    line += fineStr;
+                    line.erase(finePos);
                 }
             }
+
+            // add late fine if overdue
+            if (days <= 0) {
+
+                double fineAmount = (abs(days) + 1) * 1.75;
+
+                stringstream ss;
+                ss << fixed << setprecision(2) << fineAmount;
+
+                line.insert(numEnd + 5,
+                    " | LATE FINE: $" + ss.str());
+            }
+
+            pos = numEnd + 1;
         }
-        temp << line << "\n";
+
+        temp << line << endl;
     }
 
     file.close();
     temp.close();
+
     remove(fileReference.ACCOUNTS_FILE.c_str());
-    rename(fileReference.TEMP_FILE.c_str(), fileReference.ACCOUNTS_FILE.c_str());
+    rename(fileReference.TEMP_FILE.c_str(),fileReference.ACCOUNTS_FILE.c_str());
 }
 
 /**
