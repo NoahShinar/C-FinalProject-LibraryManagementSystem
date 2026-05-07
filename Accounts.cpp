@@ -143,8 +143,7 @@ void Accounts::updateDailyDurations() {
                 stringstream ss;
                 ss << fixed << setprecision(2) << fineAmount;
 
-                line.insert(numEnd + 5,
-                    " | LATE FINE: $" + ss.str());
+                line.insert(numEnd + 5," | LATE FINE: $" + ss.str());
             }
 
             pos = numEnd + 1;
