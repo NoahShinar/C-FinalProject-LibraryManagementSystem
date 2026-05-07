@@ -123,30 +123,60 @@ string Magazine::removeMagazine(string title) {
  * @return Status of borrowed magazine in Magazines.txt and RegisteredAccounts.txt
  */
 string Magazine::borrowMagazine(int selection, int account) {
-    ifstream file(fileReference.MAGAZINES_FILE);
-    ofstream tempFile(fileReference.TEMP_FILE);
+    ifstream accFile(fileReference.ACCOUNTS_FILE);
+    string line;
+    string accountLine = "";
+    int currentLine = 1;
+    bool accountFound = false;
 
-    if (!file || !tempFile) {
-        return "Error: Could not open magazine files";
+    while (getline(accFile, line)) {
+        if (currentLine == account) {
+            accountLine = line;
+            accountFound = true;
+            break;
+        }
+        currentLine++;
+    }
+    accFile.close();
+
+    if (!accountFound) {
+        return "Error: Account not found";
     }
 
-    string line;
+    int borrowedCount = 0;
+    size_t pos = accountLine.find("| Borrowed:");
+    while (pos != string::npos) {
+        borrowedCount++;
+        pos = accountLine.find("| Borrowed:", pos + 1);
+    }
+
+    int limit;
+    if (accountLine.find("STUDENT") != string::npos) {
+        limit = 5;
+    }
+    else {
+        limit = 10;
+    }
+
+    if (borrowedCount >= limit) {
+        cout << "Error: Maximum borrow limit reached" << endl;
+        return "Error: Maximum borrow limit reached";
+    }
+
+    ifstream file(fileReference.MAGAZINES_FILE);
+    ofstream tempFile(fileReference.TEMP_FILE);
     string magazineInfo = "";
-    int currentLine = 1;
+    currentLine = 1;
     bool magazineFound = false;
 
-    // 1. Update Magazines File
     while (getline(file, line)) {
         if (currentLine == selection) {
-            // Find "AVAILABLE" anywhere in the line to avoid spacing issues
-            size_t pos = line.find("AVAILABLE");
-            if (pos != string::npos) {
-                // Get the info part (everything before the last dash)
-                size_t lastDash = line.find_last_of('-', pos - 1);
-                magazineInfo = line.substr(0, lastDash - 1);
+            size_t posAvailable = line.find("AVAILABLE");
+            if (posAvailable != string::npos) {
+                size_t lastDash = line.find_last_of('-', posAvailable - 1);
+                magazineInfo = (lastDash != string::npos) ? line.substr(0, lastDash - 1) : line.substr(0, posAvailable - 1);
 
-                // Replace "AVAILABLE" with "UNAVAILABLE"
-                line.replace(pos, 9, "UNAVAILABLE");
+                line.replace(posAvailable, 9, "UNAVAILABLE");
                 magazineFound = true;
             }
         }
@@ -158,27 +188,24 @@ string Magazine::borrowMagazine(int selection, int account) {
 
     if (!magazineFound) {
         remove(fileReference.TEMP_FILE.c_str());
-        return "Error: Magazine already borrowed or not found.";
+        return "Error: Magazine selection invalid or already borrowed";
     }
 
     remove(fileReference.MAGAZINES_FILE.c_str());
     rename(fileReference.TEMP_FILE.c_str(), fileReference.MAGAZINES_FILE.c_str());
 
-    // 2. Update Account File
-    ifstream accFile(fileReference.ACCOUNTS_FILE);
+    accFile.open(fileReference.ACCOUNTS_FILE);
     ofstream accTemp(fileReference.TEMP_FILE);
-
-    if (!accFile || !accTemp) return "Error: Could not open accounts file";
-
+    int borrowDays = (accountLine.find("STUDENT") != string::npos) ? 30 : 60;
     currentLine = 1;
+
     while (getline(accFile, line)) {
         if (currentLine == account) {
-            line += " | Borrowed: " + magazineInfo;
+            line += " | Borrowed: " + magazineInfo + " | Duration: " + to_string(borrowDays) + " days";
         }
         accTemp << line << endl;
         currentLine++;
     }
-
     accFile.close();
     accTemp.close();
 

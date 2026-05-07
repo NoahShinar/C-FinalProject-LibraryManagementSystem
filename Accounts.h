@@ -29,16 +29,20 @@ class Accounts {
         AccountTypeEnum type;
         FileHandler fileReference;
 
+        time_t currentTime = 0;;
+        long secondsBorrowed = 0;;
+        int daysBorrowed = 0;;
+        int limit = 0;;
+
     public:
-        string borrowedBooks();
-        string borrowedMagazines();
         int maxBorrowTime();
+        bool canBorrowMore(int accountNum);
+        void updateDailyDurations();
         string ReviewAccount(int accountNum);
         void displayAccounts();
         string requestExtension(string title, int accountNum);
         int getAccountLine(string name);
         double calculateFine(long borrowTimestamp);
-        void setAccountType(int typeInt);
 };
 
 

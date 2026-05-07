@@ -34,60 +34,107 @@ using namespace std;
  * @return Status of borrowed book in Books.txt and RegisteredAccounts.txt
  */
 string Book::borrowBook(int selection, int account) {
-    ifstream file(fileReference.BOOKS_FILE);
-    ofstream tempFile(fileReference.TEMP_FILE);
 
-    if (!file || !tempFile) {
-        cerr << "Unable to open file" << endl;
-        return "Error: Could not open file";
+    ifstream accFile(fileReference.ACCOUNTS_FILE);
+    string line;
+    string accountLine = "";
+
+    int currentLine = 1;
+    bool accountFound = false;
+
+    while (getline(accFile, line)) {
+
+        if (currentLine == account) {
+
+            accountLine = line;
+            accountFound = true;
+            break;
+
+        }
+        currentLine++;
     }
 
-    string line;
-    string bookInfo = ""; // Variable to store the specific book details
-    int currentLine = 1;
+    accFile.close();
+
+    if (!accountFound) {
+        return "Error: Account not found";
+    }
+
+    int borrowedCount = 0;
+    size_t pos = accountLine.find("| Borrowed:");
+
+    while (pos != string::npos) {
+        borrowedCount++;
+        pos = accountLine.find("| Borrowed:", pos + 1);
+    }
+
+
+    int limit;
+    if (accountLine.find("STUDENT") != string::npos) {
+        limit = 5;
+    }
+
+    else {
+        limit = 10;
+    }
+
+
+    if (borrowedCount >= limit) {
+        cout << "Error: Maximum borrow limit reached" << endl;
+        return "Error: Maximum borrow limit reached";
+    }
+
+
+    ifstream file(fileReference.BOOKS_FILE);
+    ofstream tempFile(fileReference.TEMP_FILE);
+    string bookInfo = "";
+    currentLine = 1;
     bool bookFound = false;
 
-    // 1. Update Books File and Extract Info
     while (getline(file, line)) {
-        if (currentLine == selection) {
-            size_t pos = line.find(" - AVAILABLE");
-            if (pos != string::npos) {
-                // Store the book info (everything before " - AVAILABLE")
-                bookInfo = line.substr(0, pos);
 
-                line.replace(pos, 12, " - UNAVAILABLE");
-                bookFound = true;
+        if (currentLine == selection) {
+            size_t posAvailable = line.find(" - AVAILABLE");
+                if (posAvailable != string::npos) {
+                    bookInfo = line.substr(0, posAvailable);
+                    line.replace(posAvailable, 12, " - UNAVAILABLE");
+                    bookFound = true;
+                }
             }
-        }
+
         tempFile << line << endl;
         currentLine++;
     }
+
     file.close();
     tempFile.close();
+
 
     if (!bookFound) {
         remove(fileReference.TEMP_FILE.c_str());
         return "Error: Book selection invalid or already borrowed";
     }
 
+
     remove(fileReference.BOOKS_FILE.c_str());
     rename(fileReference.TEMP_FILE.c_str(), fileReference.BOOKS_FILE.c_str());
 
-    // 2. Update Account File (Append book info string)
-    ifstream accFile(fileReference.ACCOUNTS_FILE);
+    accFile.open(fileReference.ACCOUNTS_FILE);
     ofstream accTemp(fileReference.TEMP_FILE);
 
-    if (!accFile || !accTemp) {
-        return "Error: Could not open accounts file";
-    }
+    int borrowDays = (accountLine.find("STUDENT") != string::npos) ? 30 : 60;
 
     currentLine = 1;
+
+
     while (getline(accFile, line)) {
+
         if (currentLine == account) {
-            // Append the actual book string instead of the selection number
-            line += " | Borrowed: " + bookInfo;
+            line += " | Borrowed: " + bookInfo + " | Duration: " + to_string(borrowDays) + " days";
         }
+
         accTemp << line << endl;
+
         currentLine++;
     }
 

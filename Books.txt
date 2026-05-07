@@ -1,3 +1,7 @@
-3 - f - e - AVAILABLE
-f - tst - es - AVAILABLE
+3 - f - e - UNAVAILABLE
+f - tst - es - UNAVAILABLE
 class - title - author - UNAVAILABLE
+no - book - txt - UNAVAILABLE
+u - a - h - UNAVAILABLE
+test - test - test - AVAILABLE
+cc - aa - bb - AVAILABLE

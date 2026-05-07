@@ -18,25 +18,9 @@
 using namespace std;
 
 /**
- * Function to show borrowed books
- *
- * @return borrowed books
- */
-string Accounts::borrowedBooks() {
-    return "No books stored";
-}
-
-/**
- * Function to show borrowed magazines
- *
- * @return borrowed magazines
- */
-string Accounts::borrowedMagazines() {
-    return "No magazines stored";
-}
-
-/**
  * Function to set maximum borrow type for each account type and handle fines for late returns
+ *
+ * @author Kami Iwanski
  *
  * @return maximum amount of days each account has to borrow books and magazines and handle late fees
  */
@@ -56,19 +40,98 @@ int Accounts::maxBorrowTime() {
         return 30; //default
     }
 }
+
+/**
+ * Function to check if the user has reached their borrowing limit
+ *
+ * @author Kami Iwanski
+ *
+ * @param accountNum The line number of the account
+ * @return true if they can borrow more, false if at limit
+ */
+bool Accounts::canBorrowMore(int accountNum) {
+    ifstream file(fileReference.ACCOUNTS_FILE);
+    string line;
+    int currentLine = 1;
+
+    while (getline(file, line)) {
+        if (currentLine == accountNum) {
+            int currentCount = 0;
+            size_t pos = line.find("Borrowed: ");
+
+            while (pos != string::npos) {
+                currentCount++;
+                pos = line.find("Borrowed: ", pos + 1);
+            }
+
+            int limit = (line.find("Faculty") != string::npos || line.find("Staff") != string::npos) ? 10 : 5;
+
+            file.close();
+            return currentCount < limit;
+        }
+        currentLine++;
+    }
+    file.close();
+    return false;
+}
+
+/**
+ * Function that decrements duration and applies $1.75 fine if days < 0
+ *
+ * @author Kami Iwanski
+ *
+ * @returns updated borrow duration
+ */
+void Accounts::updateDailyDurations() {
+    ifstream file(fileReference.ACCOUNTS_FILE);
+    ofstream temp(fileReference.TEMP_FILE);
+
+    string line;
+    while (getline(file, line)) {
+        size_t durPos = line.find("Duration: ");
+        if (durPos != string::npos) {
+            size_t endPos = line.find(" days", durPos);
+            int start = durPos + 10;
+
+            int days = stoi(line.substr(start, endPos - start));
+            days--;
+            line.replace(start, endPos - start, to_string(days));
+
+            if (days < 0) {
+                double fineAmount = abs(days) * 1.75;
+                string fineStr = " | Charges: $" + to_string(fineAmount).substr(0, 4);
+
+                size_t chargePos = line.find(" | Charges: $");
+                if (chargePos != string::npos) {
+                    line.replace(chargePos, line.length() - chargePos, fineStr);
+                }
+                else {
+                    line += fineStr;
+                }
+            }
+        }
+        temp << line << "\n";
+    }
+
+    file.close();
+    temp.close();
+    remove(fileReference.ACCOUNTS_FILE.c_str());
+    rename(fileReference.TEMP_FILE.c_str(), fileReference.ACCOUNTS_FILE.c_str());
+}
+
 /**
  *Function to calculate the fine
+ *
+ *@author Kami Iwanski
  *
  *returns the total fine amount
  */
 double Accounts::calculateFine(long borrowTimestamp)
 {
-    time_t currentTime = time(0);
-    long secondsBorrowed = currentTime - borrowTimestamp;
-
-    int daysBorrowed = secondsBorrowed / 86400;
-
-    int limit = maxBorrowTime();
+    currentTime = time(0);
+    secondsBorrowed = currentTime - borrowTimestamp;
+    daysBorrowed = secondsBorrowed / 86400;
+    limit = maxBorrowTime();
 
     if (daysBorrowed > limit)
     {
@@ -78,6 +141,8 @@ double Accounts::calculateFine(long borrowTimestamp)
 }
 /**
  * Function to review account info
+ *
+ * @author Kami Iwanski
  *
  * @param accountNum selected account to review
  *
@@ -112,17 +177,16 @@ string Accounts::ReviewAccount(int accountNum) {
     return "Account not found.";
 }
 
-
-
-
 /**
  * Function to display all registered accounts
+ *
+ * @author Noah Shinar
  *
  * return registered accounts list
  */
 void Accounts::displayAccounts() {
     int lineCount = 1;
-    string line;
+    string line = "";
     ifstream file(fileReference.ACCOUNTS_FILE);
 
     if (!file) {
@@ -134,7 +198,17 @@ void Accounts::displayAccounts() {
 
     while (getline(file, line)) {
         if (!line.empty()) {
-            cout << lineCount << ". " << line << endl;
+            size_t pos = line.find('|');
+            string cleanLine;
+
+            if (pos != string::npos) {
+                cleanLine = line.substr(0, pos);
+            }
+            else {
+                cleanLine = line;
+            }
+
+            cout << lineCount << ". " << cleanLine << endl;
             lineCount++;
         }
     }
@@ -145,35 +219,44 @@ void Accounts::displayAccounts() {
 /**
  *Function that requests extension
  *
+ *@author Kami Iwanski
+ *
  *@param title gets title of book
  *@param gets account number
  *
  *@return extension to borrow time
  */
 
-string Accounts::requestExtension(string title, int accountNum)
-{
+string Accounts::requestExtension(string title, int accountNum) {
     ifstream file(fileReference.ACCOUNTS_FILE);
     ofstream temp(fileReference.TEMP_FILE);
 
-    if (!file || !temp) return "Error opening file.";
+    if (!file.is_open() || !temp.is_open()) return "Error opening file.";
 
     string line;
-    int currentLine = 1; // Track which account we are looking at
+    int currentLine = 1;
     bool found = false;
 
-    while (getline(file, line))
-    {
-        // Only attempt extension if the line number matches the selected accountNum
-        if (currentLine == accountNum)
-        {
-            if (line.find("Borrowed: ") != string::npos && line.find(title) != string::npos)
-            {
-                line += " --> Extension +10 days";
-                found = true;
+    while (getline(file, line)) {
+        if (currentLine == accountNum) {
+            // Check if this is the correct book/magazine line
+            if (line.find("Borrowed: ") != string::npos && line.find(title) != string::npos) {
+                size_t durPos = line.find("Duration: ");
+                if (durPos != string::npos) {
+                    size_t endPos = line.find(" days", durPos);
+                    int start = durPos + 10; // "Duration: " is 10 chars
+
+                    // Extract the current number of days, add 10
+                    int currentDays = stoi(line.substr(start, endPos - start));
+                    int newDays = currentDays + 10;
+
+                    // Replace only the number in the string
+                    line.replace(start, endPos - start, to_string(newDays));
+                    found = true;
+                }
             }
         }
-        temp << line << endl;
+        temp << line << "\n";
         currentLine++;
     }
 
@@ -181,9 +264,8 @@ string Accounts::requestExtension(string title, int accountNum)
     temp.close();
 
     if (!found) {
-        temp.close();
         remove(fileReference.TEMP_FILE.c_str());
-        return "Item not found for this account.";
+        return "Item not found or duration format missing.";
     }
 
     remove(fileReference.ACCOUNTS_FILE.c_str());
@@ -194,6 +276,8 @@ string Accounts::requestExtension(string title, int accountNum)
 
 /**
  * Helper function that gets account line
+ *
+ * @author Kami Iwanski
  *
  * @param name account name
  *

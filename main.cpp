@@ -292,6 +292,8 @@ int main() {
                 accounts.displayAccounts();
                 cin >> accountNum;
 
+                cout << accounts.ReviewAccount(accountNum) << endl;
+
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
                 cout << "Enter book/magazine to extend: ";
