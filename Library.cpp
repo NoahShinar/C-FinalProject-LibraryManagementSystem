@@ -26,11 +26,6 @@ using namespace std;
  * @return everything in Book.txt
  */
 void Library::displayBooks() {
-    // cout << "Title: " << b.title << endl;
-    // cout << "Author: " << b.author << endl;
-    // cout << "Classification: " << b.classification << endl;
-    // cout << "Year: " << b.yearPublished << endl;
-    // cout << "Borrowed Status: " << (b.isBorrowed ? "Borrowed" : "Still available") << endl;
 
     int lineCount = 1;
     string line;
