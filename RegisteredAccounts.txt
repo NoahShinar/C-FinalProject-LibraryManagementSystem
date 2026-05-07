@@ -1,3 +1,3 @@
-adasd STUDENT | Borrowed: f - tst - es | Duration: 21 days | Borrowed: f - tst - es | Duration: 21 days | Borrowed: class - title - author | Duration: 21 days | Borrowed: no - book - txt | Duration: 21 days days | Borrowed: u - a - h | Duration: 29 days
-test STUDENT
-noah STUDENT | Borrowed: vs - a - b | Duration: 23 days 
+adasd STUDENT | Borrowed: f - tst - es | Duration: -12 days | LATE FINE: $22.75 | Borrowed: f - tst - es | Duration: -12 days | LATE FINE: $22.75 | Borrowed: class - title - author | Duration: -12 days | LATE FINE: $22.75 | Borrowed: no - book - txt | Duration: -12 days | LATE FINE: $22.75 | Borrowed: u - a - h | Duration: -4 days | LATE FINE: $8.75
+test STUDENT | Borrowed: c - BOOK - b | Duration: 25 days | Borrowed: no - mag - npoah | Duration: 27 days
+noah STUDENT | Borrowed: vs - a - b | Duration: -10 days | LATE FINE: $19.25

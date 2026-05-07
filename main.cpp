@@ -245,10 +245,6 @@ int main() {
                 cout << "Select book or magazine to return: " << endl;
                 getline(cin, titleToReturn);
 
-                cout << "Enter days borrowed: ";
-                cin >> daysBorrowed;
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
                 cout << library.returnBookOrMagazine(titleToReturn, accountNum) << endl;
                 break;
 

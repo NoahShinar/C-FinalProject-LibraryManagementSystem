@@ -1,2 +1,3 @@
 vs - a - b - UNAVAILABLE
-no - mag - npoah - AVAILABLE
+no - mag - npoah - UNAVAILABLE
+g - s - d - AVAILABLE

@@ -4,4 +4,4 @@ class - title - author - UNAVAILABLE
 no - book - txt - UNAVAILABLE
 u - a - h - UNAVAILABLE
 test - test - test - AVAILABLE
-cc - aa - bb - AVAILABLE
+c - BOOK - b - UNAVAILABLE
